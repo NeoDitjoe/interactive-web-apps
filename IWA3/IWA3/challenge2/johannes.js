@@ -1,8 +1,10 @@
 // johannes.js
 
-const firstName = "Johannes"
+const firstname = "Johannes"
 const surname = "Potgieter"
-export const role = "Intern"
+/* export  */const role = "Intern"
 
-const display= firstName + " " + surname + " (" + role + ")"
+const display= firstname + " " + surname + " (" + role + ")"
 document.querySelector('#johannes').innerText = display
+
+console.log(role)

@@ -3,6 +3,6 @@ import { company, year} from './IWA3,1.js'
 
 
 
-const message = '© ' + company + ' (' + year + ')'
+const message = '© ' + year + ' (' + company + ')'
 document.querySelector('footer').innerText = message
 
