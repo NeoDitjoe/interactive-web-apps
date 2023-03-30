@@ -1,5 +1,5 @@
 let date= 2050;
-const status= "student";
+const status= "parent";
 let count = 0;
 
 if (date = 2050) {
@@ -30,6 +30,9 @@ if (date = 2050) {
 	console.log(date, 'Day of Goodwill')
 	count = count + 1
 }
+date=2050
+
+console.log("")
 
 console.log('Your status is:', status)
 console.log('The year is:', date)
