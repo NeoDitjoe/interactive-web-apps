@@ -18,7 +18,7 @@ if (date = 2050) {
 
 	console.log('August', 'Women’s Day')
 	console.log('September', 'Heritage Day')
-  date = 'December' 
+    date = 'December' 
 	console.log(date, 'Day of Reconciliation')
 	count = count + 3
 
