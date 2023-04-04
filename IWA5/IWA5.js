@@ -28,11 +28,11 @@ const batteries = 35 * 2;
 const pens = 5 * NONE_SELECTED; 
 
  
-/* if (shoes + batteries + pens + shirts >= 1000 && (location === 'RSA' || location === 'NAM') && customers === 1) {
+if (shoes + batteries + pens + shirts >= 1000 && (location === 'RSA' || location === 'NAM') && customers === 1) {
   shipping = 900;
 } else if (shipping === 0 && customers !== 1) {
   console.log(FREE_WARNING);
-}  */
+} 
 
 if (location === 'NK') {
   console.log(BANNED_WARNING);
