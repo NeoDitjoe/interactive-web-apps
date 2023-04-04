@@ -16,10 +16,6 @@ const Slip=
   console.log(Slip)
 
 
-/*   let inputString = "2.5";
-let decimalNumber = parseFloat(inputString);
-console.log(decimalNumber); */
-
 
 const leoName = 'Leo'
 const leoSurname = 'Musvaire'
@@ -33,24 +29,28 @@ const divider = '----------------------------------'
 
 // Only change below this line
 
-/* const owed = parseInt( leoBalance - sarahBalance)
-const leo = "{leoName} + {leoSurname} + \"Owed\" + \"R\" + {sarahBalance}"
-const sarah = "{leoName} + {surname} + \"Owed\" + \"R\" + {sarahBalance}"
+let owed = parseInt( leoBalance - sarahBalance)
+owed = parseFloat(owed)
+leofloat=parseInt(leoBalance)
+sarahfloat=parseInt(sarahBalance)
+
+
 const total = "Total amount owed: "
-const result = leo + sarah + divider + total + owed + divider
-
-console.log(result) */
-
-const owed = parseInt( leoBalance - sarahBalance)
 
 
-const leo = leoName + " "+ leoSurname + "(" +"Owed: R" +" "+ leoBalance
-           sarahName +" "+ sarahSurname+"(" + "Owed: R"+" " + sarahBalance
+console.log(`   
+
+   ${leoName +" "+ leoSurname +" "+"("+'Owed: '+ leofloat.toFixed(2)+")"} 
+   ${sarahName +" "+ sarahSurname +" "+"("+'Owed: R'+sarahfloat.toFixed(2)+")"}
+   
+   ${divider}
+    ${total +"R"+ owed.toFixed(2)}
+   ${divider}
+   
+   `);
 
 
-"Total amount owed: "
 
 
-console.log(leo)
 
   
