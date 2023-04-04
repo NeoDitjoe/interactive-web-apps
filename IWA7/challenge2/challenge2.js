@@ -2,7 +2,6 @@ const nickname= "Timmy";
 const firstname = "Timothy";
                                                     
 
-
 function Random() {
     let random = Math.ceil(Math.random()*2);
     return random;
