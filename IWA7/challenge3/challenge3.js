@@ -1,7 +1,7 @@
 
 
 
-const Slip= 
+/* const Slip= 
 `    
 
 
@@ -13,14 +13,13 @@ const Slip=
     ---------------------------------  
     `
 
-  console.log(Slip)
+  console.log(Slip) */
 
 
 
 const leoName = 'Leo'
 const leoSurname = 'Musvaire'
 const leoBalance = '-9394'
-
 const sarahName = 'Sarah'
 const sarahSurname = 'Kleinhans'
 const sarahBalance = '-4582.21000111'
@@ -29,10 +28,10 @@ const divider = '----------------------------------'
 
 // Only change below this line
 
-let owed = parseInt( leoBalance - sarahBalance)
+let owed = parseInt( leoBalance * -1 + sarahBalance * -1 )
 owed = parseFloat(owed)
-leofloat=parseInt(leoBalance)
-sarahfloat=parseInt(sarahBalance)
+leofloat=parseInt(leoBalance * -1)
+sarahfloat=parseInt(sarahBalance * -1)
 
 
 const total = "Total amount owed: "
@@ -44,7 +43,7 @@ console.log(`
    ${sarahName +" "+ sarahSurname +" "+"("+'Owed: R'+sarahfloat.toFixed(2)+")"}
    
    ${divider}
-    ${total +"R"+ owed.toFixed(2)}
+   ${total +"R"+" "+ owed.toFixed(2)}
    ${divider}
    
    `);
