@@ -28,13 +28,20 @@ const divider = '----------------------------------'
 
 // Only change below this line
 
-let owed = parseInt( leoBalance * -1 + sarahBalance * -1 )
-owed = parseFloat(owed)
+let owed = parseFloat( leoBalance * -1 + sarahBalance * -1 )
+owed = owed.toFixed(2)
 leofloat=parseInt(leoBalance * -1)
 sarahfloat=parseInt(sarahBalance * -1)
 
 
 const total = "Total amount owed: "
+
+const stop = owed.toString();
+const start = stop.split('');
+const wah = start.indexOf('9');
+const woah = stop.slice(0, wah) + ' ' + stop.slice(wah)
+
+
 
 
 console.log(`   
@@ -43,7 +50,7 @@ console.log(`
    ${sarahName +" "+ sarahSurname +" "+"("+'Owed: R'+sarahfloat.toFixed(2)+")"}
    
    ${divider}
-   ${total +"R"+" "+ owed.toFixed(2)}
+   ${total +"R"+" "+ woah}
    ${divider}
    
    `);
