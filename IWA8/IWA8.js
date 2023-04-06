@@ -15,63 +15,46 @@ const sarahPostal = '0310'
 
 // Only change below this line 
 
-const accessId = "47afb389-8014-4d0b-aff3-e40203d2107f"
 	
+let leobalance = parseFloat(leoBalance)
+leobalance = leobalance.toFixed(2)
+const leoCredit = parseFloat(leobalance)
 
 
-const leo = {                         //renamed variable names
+const leo = {                         
 	name : leoName,
-	balance: parseInt(leoBalance),    
+ 	balance: leoCredit,    
 	age : 24,
-	                      // I could a have made this a string and and give it a variable
-
+	accessId : "47afb389-8014-4d0b-aff3-e40203d2107f",
 	address:{
 		number : parseInt(leoNumber),
-		street : leoStreet,             //made this an object
+		street : leoStreet,          
 		postal : parseInt(leoPostal)
 	}
 	
 };
 
-
-
-const sarahtrim = sarahName.trim();          //removed empty space 
-let sarahbal = parseFloat(sarahBalance)      //so the number stay a decimal number
-sarahbal = sarahbal.toFixed(2)
-
-
-const leoCredit =  parseFloat(leo.balance)  //combine their balance
-const sarahCredit = parseFloat(sarahbal)
-const credit = leoCredit + sarahCredit
+console.log(leo, leo.address['postal'])
 
 
 
-const sarah = `
-${sarahtrim} ${sarahSurname} age: 62 (Balance: R${sarahbal})
-access id = 6b279ae5-5657-4240-80e9-23f6b635f7a8
-Address: number: ${sarahNumber}                      
-         street: ${sarahStreet}
-		 postal: ${sarahPostal}
+const sarahtrim = sarahName.trim();              //removed empty space 
+let sarahbalance = parseFloat(sarahBalance)      //so the number stay a decimal number
+sarahbalance = sarahbalance.toFixed(2)
+const sarahCredit = parseFloat(sarahbalance)
+
+   
+const sarah = {
+	name: sarahtrim +' ' + sarahSurname,
+	age: 62,
+	balance: sarahCredit,
+	accessId: '6b279ae5-5657-4240-80e9-23f6b635f7a8',
+	address: {
+	number: sarahNumber,
+	street: sarahStreet,
+	postal: sarahPostal
+	    }
+};
+
+		  console.log(sarah, sarah.address['postal'])
 		
-
-----------------------------------------------
-    Total Balance: R ${credit}
-----------------------------------------------
-`;
-
-
-
-console.log (`
-${leo.name +" "+"age:" + " " + leo.age+ ' ('+'Balance:' +' '+ leo.balance.toFixed(2) +')'} 
-${'access id:' + accessId}`);
-		console.log("Address" , leo.address, `
-		                 
-		${sarah}`)    //space between leo and sarah's detail
-
-		
-
-
-
-
-
-  
