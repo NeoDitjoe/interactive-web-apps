@@ -21,6 +21,9 @@ const oneStatus = one_status
 document.querySelector('.status').innerText = oneStatus
 
 
+
+
+
 const two_root = document.querySelector('[data-key="order2"]');        // 1 to one
 const two_biscuit = parseInt(two_root.getAttribute('data-biscuits')); // get Attribute
 const two_donut  = parseInt(two_root.getAttribute('data-donuts'));   //used parseInt for calculations
@@ -39,13 +42,29 @@ document.querySelectorAll('.pancakes dd')[1].innerText = twoPancake
 const twoStatus = one_status
 document.querySelectorAll('.status')[1].innerText = twoStatus
 
-/*
-const 3-root = document(order3),
-const 3-biscuits: document(biscuits),
-const 3-donuts: document(donuts),
-const 3-pancakes: document(pancakes),
-const 3-status: document(status)
 
+
+
+
+const three_root = document.querySelector('[data-key="order3"]'); 
+const three_biscuit = parseInt(three_root.getAttribute('data-biscuits'));
+const three_donut  = parseInt(three_root.getAttribute('data-donuts'));   
+const three_pancake  = parseInt(three_root.getAttribute('data-pancakes'));  
+const three_status = document.querySelector('[data-key="order3"]').getAttribute('data-delivered'); //targeting a specific  attribute
+
+const threeBiscuit = 'price: R ' + two_biscuit
+document.querySelectorAll('.biscuits dd')[2].innerText = twoBiscuit  //queryselectorAll for specific targeting [1]
+                                                                          
+const threeDonut = 'price: R ' + three_donut 
+document.querySelectorAll('.donuts dd')[2].innerText = threeDonut
+
+const threePancake = 'price: R ' + three_pancake 
+document.querySelectorAll('.pancakes dd')[2].innerText = threePancake
+
+const threeStatus = three_status
+document.querySelectorAll('.status')[2].innerText = threeStatus
+
+/*
 1-biscuits= 1-root.biscuits,
 1-donuts = 1-root.donuts,
 1-pancakes = 1-root.pancakes,
@@ -70,8 +89,3 @@ document(donuts.p-count).delivered 3-status ? 0 : 1-donuts + 2-donuts + 3-donuts
 
 document(pancakes.p-count).pending = 3-status ? 1-pancakes+ 2-pancakes+ 3-pancakes: 0
 document(pancakes.p-count).delivered 3-status ? 0 : 1-pancakes+ 2-pancakes + 3-pancakes */
-
-
-
-
-/* 10 = 10 */
