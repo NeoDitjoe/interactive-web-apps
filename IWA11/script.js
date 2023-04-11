@@ -44,8 +44,6 @@ document.querySelectorAll('.status')[1].innerText = twoStatus
 
 
 
-
-
 const three_root = document.querySelector('[data-key="order3"]'); 
 const three_biscuit = parseInt(three_root.getAttribute('data-biscuits'));
 const three_donut  = parseInt(three_root.getAttribute('data-donuts'));   

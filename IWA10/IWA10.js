@@ -84,9 +84,55 @@ console.log('Date change:', digit )
 }
 
 
+
+const firstHolidayTimestamp = Math.min(
+    parseInt(holidays[0].date),
+    holidays[1].date,
+    holidays[2].date,
+    holidays[3].date,
+    holidays[4].date,
+    holidays[5].date,
+    holidays[6].date,
+    holidays[7].date,
+    holidays[8].date
+)
+
+
+
+console.log('')
+
+const firstHolidayDate = firstHolidayTimestamp;
+const firstHoliday = new Date(firstHolidayDate).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit'});
+
+ 
+console.log(firstHoliday +'/' +`${currentYear}`);
+
+
+
+const lastHolidayTimestamp = Math.max(
+    parseInt(holidays[0].date),
+    holidays[1].date,
+    holidays[2].date,
+    holidays[3].date,
+    holidays[4].date,
+    holidays[5].date,
+    holidays[6].date,
+    holidays[7].date,
+    holidays[8].date
+)
+
+
+
+const lastHolidayDate = new Date(lastHolidayTimestamp);
+const lastHoliday = lastHolidayDate.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit'})
+console.log(lastHoliday +'/' + `${currentYear}`)
+
+
+
+
 //changing the dates format
 //[0]
-let zero = holidays[0].date 
+/* let zero = holidays[0].date 
 zero = new Date (zero)
 zero = zero.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'})
 //[1]
@@ -248,7 +294,7 @@ const lastMonth = lastHolidayDate.getMonth() + 1;
 console.log(`${lastDay}/${lastMonth}/${currentYear}`);
 
 const randomHoliday = holidays[Math.random()]
-console.log(randomHoliday)
+console.log(randomHoliday) */
 
 
 
