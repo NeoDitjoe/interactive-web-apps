@@ -31,7 +31,7 @@ const rent = {
 // You can change below however you want
 
 let Balance = salary
-let Tax = tax[913]
+let Tax = tax[913]    //12%
 Tax = parseInt(Tax)/100 * salary;
 Balance = salary - Tax
 Balance = Balance - expenses.food - expenses.transport -rent['large-apartment']

@@ -53,14 +53,20 @@ const futureId = 9
 
 // Do not change code above this comment
 
-if (holidays[9]) {
-    console.log(holidays[9].name)
-  } else {
+
+const holiday = "dhf"
+
+if (holiday == christmas) {
+    console.log(holidays[6].name)
+  }
+else if (holiday == futureId){
     console.log("ID 9 not created yet")
+  }
+  else{
+    null
   }
   
 
-console.log(futureId || 'ID {futureId} not created yet')
 
 let copied = holidays[6]
 let copiedName = holidays[6].name
@@ -125,7 +131,16 @@ const lastHolidayTimestamp = Math.max(
 
 const lastHolidayDate = new Date(lastHolidayTimestamp);
 const lastHoliday = lastHolidayDate.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit'})
-console.log(lastHoliday +'/' + `${currentYear}`)
+console.log(lastHoliday + '/' + `${currentYear}`)
+
+console.log('')
+
+
+const randomInt = Math.floor(Math.random() * Object.keys(holidays).length);
+const randomm = holidays[randomInt].name
+
+console.log(randomm);
+
 
 
 
@@ -272,7 +287,6 @@ const firstDay = firstHolidayDate.getDate();
 const firstMonth = firstHolidayDate.getMonth() + 1;
 
 console.log(`${firstDay}/${firstMonth}/${currentYear}`);
-
 
 
 const lastHolidayTimestamp = Math.max(

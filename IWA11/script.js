@@ -50,8 +50,8 @@ const three_donut  = parseInt(three_root.getAttribute('data-donuts'));
 const three_pancake  = parseInt(three_root.getAttribute('data-pancakes'));  
 const three_status = document.querySelector('[data-key="order3"]').getAttribute('data-delivered'); //targeting a specific  attribute
 
-const threeBiscuit = 'price: R ' + two_biscuit
-document.querySelectorAll('.biscuits dd')[2].innerText = twoBiscuit  //queryselectorAll for specific targeting [1]
+const threeBiscuit = 'price: R ' + three_biscuit
+document.querySelectorAll('.biscuits dd')[2].innerText = threeBiscuit  //queryselectorAll for specific targeting [1]
                                                                           
 const threeDonut = 'price: R ' + three_donut 
 document.querySelectorAll('.donuts dd')[2].innerText = threeDonut
@@ -62,23 +62,10 @@ document.querySelectorAll('.pancakes dd')[2].innerText = threePancake
 const threeStatus = three_status
 document.querySelectorAll('.status')[2].innerText = threeStatus
 
+
+
+
 /*
-1-biscuits= 1-root.biscuits,
-1-donuts = 1-root.donuts,
-1-pancakes = 1-root.pancakes,
-1-status = 1-root.status ? Delivered : Pending
-
-2-biscuits= 2-root.biscuits,
-2-donuts = 2-root.donuts,
-2-pancakes = 2-root.pancakes,
-2-status = 2-root.status ? Delivered : Pending
-
-3-biscuits= 3-root.biscuits,
-3-donuts = 3-root.donuts,
-3-pancakes = 3-root.pancakes,
-3-status = 3-root.status ? Delivered : Pending
-
-
 document(biscuits.p-count).pending = 3-status ? 1-biscuits + 2-biscuits + 3-biscuits: 0
 document(biscuits.p-count).delivered 3-status ? 0 : 1-biscuits + 2-biscuits + 3-biscuits
 

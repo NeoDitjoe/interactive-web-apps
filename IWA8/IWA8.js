@@ -23,18 +23,18 @@ const leoCredit = parseFloat(leobalance)
 
 const leo = {                         
 	name : leoName,
- 	balance: leoCredit,    
+ 	balance: leoCredit,    //added leoCredit
 	age : 24,
 	accessId : "47afb389-8014-4d0b-aff3-e40203d2107f",
 	address:{
-		number : parseInt(leoNumber),
+		number : parseInt(leoNumber),    //parseInt
 		street : leoStreet,          
-		postal : parseInt(leoPostal)
+		postal : parseInt(leoPostal)     //parseInt
 	}
 	
 };
 
-console.log(leo, leo.address['postal'])
+console.log(leo, leo.address['postal'])  //remove bracket from address to postal
 
 
 
