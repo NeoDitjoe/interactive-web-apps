@@ -39,13 +39,13 @@ buttons.forEach(button => {
  */
 
 //changing colour of buttons
-const book1ButtonColor = document.querySelector('#book1 .checkin');
+const book1ButtonColor = document.querySelector('#book1 .checkin'); 
 const book2ButtonColor = document.querySelector('#book2 .checkin');
 const book3ButtonColor = document.querySelector('#book3 .checkin');
 
- book1ButtonColor.style.color = 'black';
- book2ButtonColor.style.color = 'black';
- book3ButtonColor.style.color = 'black'; 
+ book1ButtonColor.style.color = '';  
+ book2ButtonColor.style.color = '';
+ book3ButtonColor.style.color = ''; 
 
  //change status color
 
@@ -111,7 +111,6 @@ if (canCheckout2 == false) {
 }
 if (canCheckIn2 == false) {
     inButton2.disabled = true
-    book2ButtonColor.style.color = ''
 }
 
 //BOOK 3
@@ -133,7 +132,6 @@ if (canCheckout3 == false) {
 }
 if (canCheckIn3 == false) {
     inButton3.disabled = true
-    book3ButtonColor.style.color = ''
 }
 
 
