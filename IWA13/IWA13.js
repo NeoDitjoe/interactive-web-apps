@@ -5,22 +5,24 @@ let calculated = '1'
 // Only allowed to change below
 
 
-const logCalc = parseInt(calculated )+ 1 
-                
-
-const calcUser = () => {
-  logCalc
-  if (calculated = 2) user = 'John'
-  if (calculated = 2) state = 'requesting'
-  if (calculated = 3) state = 'idle'
+const  logCalc = () => {     // relocated = to after variable
+    const isString = typeof calculated == 'numerical-string'  //changed to comparison
+    const calculatedAsNumber = isString ? calculated : parseInt(calculated)  //parseInt
+    calculated = calculatedAsNumber + 1   // to assigning
 }
 
-const checkUser = () => {
-	if (state = 'requesting') {
+const  calcUser = () => {  //
+  logCalc()          //parathenses
+  if (calculated > 2) user = 'John'
+  if (calculated > 2) state = 'requesting'
+  if (calculated > 3) state = 'idle'
+}
+
+const checkUser = () => { //
+	if (user && state === 'requesting') { // don't need user
 		console.log(`User: ${user} (${calculated})`)
 	}
 }
-
 
 // Only allowed to change code above
 
@@ -38,4 +40,3 @@ calcUser()
 
 checkUser()
 calcUser()
-  
