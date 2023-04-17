@@ -22,9 +22,6 @@ const oneStatus = one_status
 document.querySelector('.status').innerText = oneStatus
 
 
-
-
-
 const two_root = document.querySelector('[data-key="order2"]');        // 1 to one
 const two_biscuit = parseInt(two_root.getAttribute('data-biscuits')); // get Attribute
 const two_donut  = parseInt(two_root.getAttribute('data-donuts'));   //used parseInt for calculations

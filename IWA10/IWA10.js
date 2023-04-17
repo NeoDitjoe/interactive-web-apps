@@ -54,10 +54,10 @@ const futureId = 9
 // Do not change code above this comment
 
 
-const holiday = "dhf"
+const holiday = ""
 
 if (holiday == christmas) {
-    console.log(holidays[6].name)
+    console.log(holidays[6].date)
   }
 else if (holiday == futureId){
     console.log("ID 9 not created yet")
@@ -68,16 +68,17 @@ else if (holiday == futureId){
   
 
 
-let copied = holidays[6]
-let copiedName = holidays[6].name
-copiedName =  'X-mas'
+let copied = holidays[6]       // changed
+let copiedName = holidays[6].name // changed
+copiedName =  'X-mas'  //changed
 
 //changing time
-correctDate = copiedName.date
+correctDate = copiedName.date               //used different variables
 correctDate = new Date(`25 December ${currentYear}`)
+
 isEarlier = correctDate < holidays[6].date
 console.log('New date is earlier:', isEarlier)
-console.log('')
+console.log('')   // space
 
 
 const digit = correctDate.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'})
@@ -92,7 +93,7 @@ console.log('Date change:', digit )
 
 
 const firstHolidayTimestamp = Math.min(
-    parseInt(holidays[0].date),
+    parseInt(holidays[0].date),   // changed
     holidays[1].date,
     holidays[2].date,
     holidays[3].date,
@@ -105,8 +106,10 @@ const firstHolidayTimestamp = Math.min(
 
 
 
-console.log('')
+console.log('')  // space 
 
+
+// whole code changed
 const firstHolidayDate = firstHolidayTimestamp;
 const firstHoliday = new Date(firstHolidayDate).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit'});
 
@@ -114,7 +117,7 @@ const firstHoliday = new Date(firstHolidayDate).toLocaleDateString('en-GB', {day
 console.log(firstHoliday +'/' +`${currentYear}`);
 
 
-
+//same as above code
 const lastHolidayTimestamp = Math.max(
     parseInt(holidays[0].date),
     holidays[1].date,
