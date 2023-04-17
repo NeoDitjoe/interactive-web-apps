@@ -15,23 +15,12 @@ const  third= data.lists[2][1]
 
 const result = []
 
-/* const extractBiggest = () => {
+   const extractBiggest = () => {
 	if (first[first.length-1] >= second[second.length -1] && first[first.length-1] >= third[third.length-1]) {
 		return first.pop()
 	}
 
 	if (second[second.length-1] >= third[third.length-1]) {
-		return second.pop()
-	}
-	
-	return third.pop()
-} */
-    const extractBiggest = () => {
-	if (first > second && first > third) {
-		return first.pop()
-	}
-
-	if (second >= third ) {
 		return second.pop()
 	}
 	
