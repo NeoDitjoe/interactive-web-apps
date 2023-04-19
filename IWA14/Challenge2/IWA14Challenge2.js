@@ -1,21 +1,17 @@
-
-// script.js
-
-function add (a, b ) {
+function add (a, b ) {    //modified to a proper function structure, paranthesis, 
 	 return a + b
 	}
 
-
-function multiply (a, b) { 
+function multiply (a, b) {    //used multiply and added return 
 	return  a *  b 
 }
 
 function internal() {
 
-	add = this.add(this.internal.a, this.internal.b)
-	multiply = this.multiply(add, this.internal.c)  
+	const added = this.add(this.internal.a, this.internal.b)  //added internal 
+	const multiplied = this.multiply(added, this.internal.c)    // created a variable
 
-	console.log(multiply)
+	console.log(multiplied)   // replaced return with console
 }
 
 // Not allowed to change below this
