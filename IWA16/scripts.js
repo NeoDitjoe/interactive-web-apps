@@ -118,38 +118,47 @@ function createHtml (){ */
 
 
 
+ 
+  
 
+
+
+
+
+
+/*   const what = document.createElement('dt');
+  what.textContent = data.response.data.NM372.firstName;
+  
+  const dl = document.querySelector('h1');
+  dl.appendChild(what); */
 
 
 
 
 
   // Only edit below this comment
-  
-/*     const createHtml = (athlete) => {
-     const  athlete1 = [data.response.data.NM372.firstName + data.response.data.NM372.surname+ data.response.data.NM372.id+ data.response.data.NM372.races] 
+  /* const element = document.querySelector("h1");  */
+
+
+     const createHtml = (athlete ) => {
+     let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
+     let races = Object.keys(data.response.data.NM372.races).length
      
-    [date], [time] = races.reverse()
- 
+    const element = document.querySelector("h1"); 
     const fragment = document.createDocumentFragment();
   
-    title = document.createElement(h2);
-    title= id;
+     let title = document.createElement("h2");
+    title.textContent = data.response.data.NM372.id;
     fragment.appendChild(title);
   
-    const list = document.createElement(dl);
+    const list = document.createElement("dl");
+
+    let day = new Date(data.response.data.NM372.races[1].date)
   
-    const day = date.getDate();
-    const month = MONTHS[date.month];
-    const year = date.year;
+   let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
+   timeAsArray = '00:'+ timeAsArray
   
-    first, second, third, fourth = timeAsArray;
-    total = first + second + third + fourth;
-  
-    const hours = total / 60;
-    const minutes = total / hours / 60; */
-  
-  /*   list.innerHTML = /* html 
+ /*    list.innerHTML = // html 
       <dt>Athlete</dt>
       <dd>${firstName surname}</dd>
   
@@ -161,14 +170,62 @@ function createHtml (){ */
   
       <dt>Total Time (Latest)</dt>
       <dd>${hours.padStart(2, 0) minutes}</dd>
-    `; */
+    ; */
   
-  /*   fragment.appendChild(list);
+    fragment.appendChild(list);
   }
+
+
   
-  [NM372], [SV782] = data
-  document.querySelector(NM372).appendChild(createHtml(NM372));
-  document.querySelector(SV782).appendChild(createHtml(SV782));  */
+
+  
+  const element = document.querySelector("h1");
+  const fragment = document.createDocumentFragment();
+  const browsers = ["Firefox", "Chrome", "Opera", "Safari"];
+  
+  browsers.forEach((browser) => {
+    const li = document.createElement("p");
+    li.textContent = browser;
+    fragment.appendChild(li);
+    
+  });
+  
+  
+
+  
+
+
+
+  const what = document.createElement('dt');
+  what.textContent = data.response.data.NM372.firstName;
+  
+  const dl = document.querySelector('h1');
+  dl.appendChild(what);
+
+  /*   [NM372], [SV782] = data */
+/*   document.querySelector('h1').createHtml('dd'); */
+  
+/*   document.querySelector('h1').createHtml('h2');   */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // create 2 functions for the 2 athletes
@@ -179,7 +236,7 @@ function createHtml (){ */
 athleteName1 = 'Athlete: '+athleteName1 +' '+ data.response.data.SV782.surname */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let log = 2
+/* let log = 2
 let athlete = null
 let athleteName = '1'
 
@@ -187,7 +244,7 @@ let athleteName = '1'
 function createHTML() {
 
 const fragment = athleteName === "Athlete: Nwabisa Masiko"
-const whichAthlete = fragment ? athleteName : parseInt(athleteName)   /*  'Athlete: '+ data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname */
+const whichAthlete = fragment ? athleteName : parseInt(athleteName)   // 'Athlete: '+ data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname 
 athleteName = whichAthlete + 1
 
 
@@ -219,7 +276,7 @@ for (let i = 0; i < 4; i++) {
   createHTML3();
   createHTML2();
 }
-
+ */
 
 
   
