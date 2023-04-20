@@ -68,67 +68,106 @@ const MONTHS = [
 
   // Only edit below this comment
 
-  //nwabisa///////////////////////////
+  //nwabisa//////////////////////////////
   let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
   let races = Object.keys(data.response.data.NM372.races).length
     
-  
-  let title = document.createElement("h2");
-  title.textContent = data.response.data.NM372.id;
-  const dl = document.querySelector('body');
-  dl.appendChild(title); 
-  
-
-   
-
   let day = new Date(data.response.data.NM372.races[1].date)  
   let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
   timeAsArray = '00:'+ timeAsArray
-  
 
 
-
-
-  const element = document.querySelector("body");
-  const fragment = document.createDocumentFragment();
-
-  const athlete =  [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray ]
-
-
-  athlete.forEach((athletes) => {
-  const details = document.createElement("dl");
-  details.textContent = athletes;
-  fragment.appendChild(details);
-    
-   });
-   element.appendChild(fragment);
-
- // schalk/////////////////////////
+  // schalk/////////////////////////////////////////////
  const athleteSchalk = data.response.data.SV782.firstName +' '+ data.response.data.SV782.surname
  let racesSchalk = Object.keys(data.response.data.SV782.races).length
-   
- 
-  let titleSchalk = document.createElement("h2");
-  titleSchalk.textContent = data.response.data.SV782.id;
-  const dd = document.querySelector('body');
-  dd.appendChild(titleSchalk);
-
 
   let daySchalk = new Date(data.response.data.SV782.races[1].date)  
   let timeAsArraySchalk = data.response.data.SV782.races[1].time[0] + data.response.data.SV782.races[1].time[1] + data.response.data.SV782.races[1].time[2] + data.response.data.SV782.races[1].time[3]
   timeAsArraySchalk = '00:'+ timeAsArraySchalk
 
 
-  const elementSchalk = document.querySelector("body");
-  const fragmentSchalk = document.createDocumentFragment();
 
-  const athlete2 =  [ 'Athlete:' +' '+ athleteSchalk,"Total Races: "+ racesSchalk, 'Event Date : ' + daySchalk, 'Total Time: ' + timeAsArraySchalk ]
+  ////OUTPUT///////////////////////////////////////////////
+  const element = document.querySelector("body");
+  const fragment = document.createDocumentFragment('dl');
+
+  const athlete = [ 
+    [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray],
+
+     [ 'Athlete:' +' '+ athleteSchalk,"Total Races: "+ racesSchalk, 'Event Date : ' + daySchalk, 'Total Time: ' + timeAsArraySchalk],
+   ]
+
+  let nwabisa = athlete[0]
+  let schalk = athlete[1]
+
+  for (let i = 0; i < 3; i++){
+    if (i < 1){
+      nwabisa.forEach((athletes) => {
+        const details = document.createElement("dd");
+        details.textContent = athletes;
+        fragment.appendChild(details);
+          
+         });
+         element.appendChild(fragment);
+
+    } else if ( i > 1 ){
+      let titleSchalk = document.createElement("h2");
+      titleSchalk.textContent = data.response.data.SV782.id;
+      const dd = document.querySelector('body');
+      dd.appendChild(titleSchalk);
+
+      schalk.forEach((athletes) => {
+        const details = document.createElement("dd");
+        details.textContent = athletes;
+        fragment.appendChild(details);
+          
+         });
+         element.appendChild(fragment);
+      
+    }
+   } 
+   
+
+   let title = document.createElement("h2");
+   title.textContent = '  ' ;
+   let dl = document.querySelector('body');
+   dl.appendChild(title);
+
+  for ( let j = 0 ;  j <3;  j++ ){
+    if (j < 1 ){
+      title.textContent = 'ggvv' 
+      console.log('yjd')  
+
+      if (title.textContent = 'ggvv' ){
+        title.textContent = 'udcue'
+      }
+
+    } 
+   }
+/* 
+   let who = document.querySelector('body').style.transform = 'rotate(180deg)' */
+   let who = document.querySelector('body');
+   who.style.color = 'green';
+   who.style.transform += ' rotate(180deg)';
+   who.style.transform = 'scaleX(-1)';
+   
 
 
-  athlete2.forEach((athletes) => {
-  const details = document.createElement("dl");
-  details.textContent = athletes;
-  fragment.appendChild(details);
+  
+   
+
+
+/*    let title = document.createElement("h2");
+   title.textContent = data.response.data.NM372.id;  
+   const dl = document.querySelector('body');
+   dl.appendChild(title);
+
+    let titleSchalk = document.createElement("h2");
+   titleSchalk.textContent = data.response.data.SV782.id;
+   const dd = document.querySelector('body');
+   dd.appendChild(titleSchalk);  */
+
     
-   });
-   element.appendChild(fragment);
+
+ 
+   
