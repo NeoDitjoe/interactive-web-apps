@@ -68,26 +68,22 @@ const MONTHS = [
 
   // Only edit below this comment
 
-     let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
-     let races = Object.keys(data.response.data.NM372.races).length
+  let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
+  let races = Object.keys(data.response.data.NM372.races).length
      
-   
-    const fragmen = document.createDocumentFragment(); 
-  
-     let title = document.createElement("h2");
-    title.textContent = data.response.data.NM372.id;
-  
-   const dl = document.querySelector('body');
-   dl.appendChild(title); 
+
+  let title = document.createElement("h2");
+  title.textContent = data.response.data.NM372.id;
+  const dl = document.querySelector('body');
+  dl.appendChild(title); 
   
 
-   let day = new Date(data.response.data.NM372.races[1].date)
-  
-   let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
-   timeAsArray = '00:'+ timeAsArray
+  let day = new Date(data.response.data.NM372.races[1].date)  
+  let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
+  timeAsArray = '00:'+ timeAsArray
   
 
- day = '2 Dec 2022'  // this
+  day = '2 Dec 2022'  // this
 
   
   const element = document.querySelector("body");
@@ -95,9 +91,14 @@ const MONTHS = [
   const athlete =  [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray]
   
   athlete.forEach((athletes) => {
-    const details = document.createElement("dl");
-    details.textContent = athletes;
-    fragment.appendChild(details);
+  const details = document.createElement("dl");
+  details.textContent = athletes;
+  fragment.appendChild(details);
     
-  });
-  element.appendChild(fragment);
+   });
+   element.appendChild(fragment);
+
+
+/* for (let i = 0; i < athlete.length; i++) {
+  document.createElement('p').innerText = ("one");
+}  */
