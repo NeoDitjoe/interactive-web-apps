@@ -65,6 +65,8 @@ const MONTHS = [
     },
   };
 
+  
+
 
   // Only edit below this comment
 
@@ -102,6 +104,13 @@ const MONTHS = [
 
   for (let i = 0; i < 3; i++){
     if (i < 1){
+
+      let title = document.createElement("h2");
+     title.textContent = data.response.data.NM372.id;  
+     const dl = document.querySelector('body');
+     dl.appendChild(title);
+
+
       nwabisa.forEach((athletes) => {
         const details = document.createElement("dd");
         details.textContent = athletes;
@@ -117,57 +126,12 @@ const MONTHS = [
       dd.appendChild(titleSchalk);
 
       schalk.forEach((athletes) => {
-        const details = document.createElement("dd");
-        details.textContent = athletes;
-        fragment.appendChild(details);
-          
-         });
-         element.appendChild(fragment);
+      const details = document.createElement("dd");
+      details.textContent = athletes;
+      fragment.appendChild(details);
+        
+       });
+       element.appendChild(fragment);
       
     }
-   } 
-   
-
-   let title = document.createElement("h2");
-   title.textContent = '  ' ;
-   let dl = document.querySelector('body');
-   dl.appendChild(title);
-
-  for ( let j = 0 ;  j <3;  j++ ){
-    if (j < 1 ){
-      title.textContent = 'ggvv' 
-      console.log('yjd')  
-
-      if (title.textContent = 'ggvv' ){
-        title.textContent = 'udcue'
-      }
-
-    } 
-   }
-/* 
-   let who = document.querySelector('body').style.transform = 'rotate(180deg)' */
-   let who = document.querySelector('body');
-   who.style.color = 'green';
-   who.style.transform += ' rotate(180deg)';
-   who.style.transform = 'scaleX(-1)';
-   
-
-
-  
-   
-
-
-/*    let title = document.createElement("h2");
-   title.textContent = data.response.data.NM372.id;  
-   const dl = document.querySelector('body');
-   dl.appendChild(title);
-
-    let titleSchalk = document.createElement("h2");
-   titleSchalk.textContent = data.response.data.SV782.id;
-   const dd = document.querySelector('body');
-   dd.appendChild(titleSchalk);  */
-
-    
-
- 
-   
+   }    
