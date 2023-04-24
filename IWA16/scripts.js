@@ -70,54 +70,71 @@ const MONTHS = [
 
   // Only edit below this comment
 
+
+/**
+ * created a bad habit of completely removing the given code, affected my progress IWA17
+ * possible if i can show you 17 to let me know If I am on the right track and also give advise on what i should research on
+ * 
+ */
+
+
+
+
+
+
+
+
+
   //nwabisa//////////////////////////////
-  let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
-  let races = Object.keys(data.response.data.NM372.races).length
-    
-  let day = new Date(data.response.data.NM372.races[1].date)  
-  let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
-  timeAsArray = '00:'+ timeAsArray
+let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
+let races = Object.keys(data.response.data.NM372.races).length
+  
+let day = new Date(data.response.data.NM372.races[1].date).getDate() +' '+ MONTHS[11] +' '+ new Date(data.response.data.NM372.races[1].date).getFullYear()
+console.log(day) 
+let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
+timeAsArray = timeAsArray.toString().padStart(2, '0')
 
 
-  // schalk/////////////////////////////////////////////
- const athleteSchalk = data.response.data.SV782.firstName +' '+ data.response.data.SV782.surname
- let racesSchalk = Object.keys(data.response.data.SV782.races).length
+// schalk/////////////////////////////////////////////
+const athleteSchalk = data.response.data.SV782.firstName +' '+ data.response.data.SV782.surname
+let racesSchalk = Object.keys(data.response.data.SV782.races).length
 
-  let daySchalk = new Date(data.response.data.SV782.races[1].date)  
-  let timeAsArraySchalk = data.response.data.SV782.races[1].time[0] + data.response.data.SV782.races[1].time[1] + data.response.data.SV782.races[1].time[2] + data.response.data.SV782.races[1].time[3]
-  timeAsArraySchalk = '00:'+ timeAsArraySchalk
-
-
-
-  ////OUTPUT///////////////////////////////////////////////
-  const element = document.querySelector("body");
-  const fragment = document.createDocumentFragment('dl');
-
-  const athlete = [ 
-    [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray],
-
-     [ 'Athlete:' +' '+ athleteSchalk,"Total Races: "+ racesSchalk, 'Event Date : ' + daySchalk, 'Total Time: ' + timeAsArraySchalk],
-   ]
-
-  let nwabisa = athlete[0]
-  let schalk = athlete[1]
-
-  for (let i = 0; i < 3; i++){
-    if (i < 1){
-
-      let title = document.createElement("h2");
-     title.textContent = data.response.data.NM372.id;  
-     const dl = document.querySelector('body');
-     dl.appendChild(title);
+let daySchalk = new Date(data.response.data.SV782.races.at(-1).date).getDate() +' '+ MONTHS[11] +' '+ new Date(data.response.data.SV782.races.at(-1).date).getFullYear()
+let timeAsArraySchalk = data.response.data.SV782.races[1].time[0] + data.response.data.SV782.races[1].time[1] + data.response.data.SV782.races[1].time[2] + data.response.data.SV782.races[1].time[3]
+timeAsArraySchalk = '00:'+ timeAsArraySchalk
 
 
-      nwabisa.forEach((athletes) => {
-        const details = document.createElement("dd");
-        details.textContent = athletes;
-        fragment.appendChild(details);
-          
-         });
-         element.appendChild(fragment);
+
+////OUTPUT///////////////////////////////////////////////
+const element = document.querySelector("body");
+const fragment = document.createDocumentFragment('dl');
+
+const athlete = [ 
+  [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray],
+
+  [ 'Athlete:' +' '+ athleteSchalk,"Total Races: "+ racesSchalk, 'Event Date : ' + daySchalk, 'Total Time: ' + timeAsArraySchalk],
+  
+]
+
+let nwabisa = athlete[0]
+let schalk = athlete[1]
+
+for (let i = 0; i < 3; i++){
+  if (i < 1){
+
+   let title = document.createElement("h2");
+    title.textContent = data.response.data.NM372.id;  
+    const dl = document.querySelector('body');
+    dl.appendChild(title);
+
+
+    nwabisa.forEach((athletes) => {
+      const details = document.createElement("dd");
+      details.textContent = athletes;
+      fragment.appendChild(details);
+        
+       });
+       element.appendChild(fragment);
 
     } else if ( i > 1 ){
       let titleSchalk = document.createElement("h2");
