@@ -33,7 +33,7 @@ const MONTHS = [
             },
             {
               date: '2022-12-02T20:00:00.000Z',
-              time: [6, 7, 8, 7],
+              time: [6, 7, 8, 7,],
             },
           ],
         },
@@ -68,31 +68,16 @@ const MONTHS = [
   
 
 
-  // Only edit below this comment
+// Only edit below this comment
 
-
-/**
- * created a bad habit of completely removing the given code, affected my progress IWA17
- * possible if i can show you 17 to let me know If I am on the right track and also give advise on what i should research on
- * 
- */
-
-
-
-
-
-
-
-
-
-  //nwabisa//////////////////////////////
+//nwabisa//////////////////////////////
 let Athlete  = data.response.data.NM372.firstName +' '+ data.response.data.NM372.surname
 let races = Object.keys(data.response.data.NM372.races).length
   
 let day = new Date(data.response.data.NM372.races[1].date).getDate() +' '+ MONTHS[11] +' '+ new Date(data.response.data.NM372.races[1].date).getFullYear()
-console.log(day) 
+
 let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
-timeAsArray = timeAsArray.toString().padStart(2, '0')
+timeAsArray = '00:' +timeAsArray
 
 
 // schalk/////////////////////////////////////////////
@@ -100,13 +85,13 @@ const athleteSchalk = data.response.data.SV782.firstName +' '+ data.response.dat
 let racesSchalk = Object.keys(data.response.data.SV782.races).length
 
 let daySchalk = new Date(data.response.data.SV782.races.at(-1).date).getDate() +' '+ MONTHS[11] +' '+ new Date(data.response.data.SV782.races.at(-1).date).getFullYear()
-let timeAsArraySchalk = data.response.data.SV782.races[1].time[0] + data.response.data.SV782.races[1].time[1] + data.response.data.SV782.races[1].time[2] + data.response.data.SV782.races[1].time[3]
+let timeAsArraySchalk = data.response.data.SV782.races.at(-1).time[0] + data.response.data.SV782.races[1].time[1] + data.response.data.SV782.races[1].time[2] + data.response.data.SV782.races[1].time[3]
 timeAsArraySchalk = '00:'+ timeAsArraySchalk
 
 
 
 ////OUTPUT///////////////////////////////////////////////
-const element = document.querySelector("body");
+const body = document.querySelector("body");
 const fragment = document.createDocumentFragment('dl');
 
 const athlete = [ 
@@ -134,7 +119,7 @@ for (let i = 0; i < 3; i++){
       fragment.appendChild(details);
         
        });
-       element.appendChild(fragment);
+       body.appendChild(fragment);
 
     } else if ( i > 1 ){
       let titleSchalk = document.createElement("h2");
@@ -148,7 +133,7 @@ for (let i = 0; i < 3; i++){
       fragment.appendChild(details);
         
        });
-       element.appendChild(fragment);
+       body.appendChild(fragment);
       
     }
-   }    
+   } 
