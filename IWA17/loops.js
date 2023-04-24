@@ -24,9 +24,10 @@ function createArray(length) {
     for (let i = 0; i <= length.length ; i++) {
        result.push(i)       
     }
-    return  result 
+    return result 
   
 }
+
 /////////////////////////////////////////////function////////////////////////////////////
 function createData(data) {
         
@@ -52,7 +53,7 @@ function createData(data) {
 
              result.push/* [weekIndex].days */ ({   
                   dayOfWeek:  + 1,
-                 value: isValid ? days : ' '   
+                 value: isValid ? days : days   
          })       
         }
         result.push(value) 
@@ -60,9 +61,9 @@ function createData(data) {
     
     return result 
  } 
+ console.log(createData())
  /////////////////////////////////////////////////////////function//////////////////////////////////////////////
  function addCell( existing, classString, value )  {
-    createData()
     const result = /* html */ 
       `
       <td class='${classString}'>  
@@ -78,26 +79,26 @@ function createData(data) {
 
  /////////////////////////////////////////////////////////function//////////////////////////////////////////////
  function createHtml(data){
-    createData()
+
 
     let result = ' ';
 
     for (let {week,  days} of result) {    //week, day of data //let
         let inner =[]
-        inner = addCell(inner, 'table__cell table__cell_sidebar', 'Week {week}')
+        inner = addCell(inner, 'table__cell table__cell_sidebar', `Week ${week /* week */}`)
     
         for (let  {dayOfWeek, value}  in days) {    //let
             let classString = "table__cell table__cell_sidebar"
- 		    let isToday = new Date() === value
+ 		    let isToday = new Date().getDate() === value
             let isWeekend = dayOfWeek == 1 && dayOfWeek == 7
-            let isAlternate = week/ 2
+            let isAlternate = week% 2
 
             
 
  			if (isToday) classString = `${classString} table__cell_today`
-            if (isWeekend) classString =     `${classString} table__cell_weekend `   
+            if (isWeekend) classString = `${classString} table__cell_weekend `   
             if (isAlternate) classString = `${classString} table__cell_alternate`
-            inner = addCell(inner, classString, value)
+            action = addCell(inner, classString, value)
         }
         result = `<tr>${inner}</tr>`
      }
@@ -108,5 +109,5 @@ console.log(createHtml())
 const current = new Date()
 document.querySelector('[data-title]').innerText = `${MONTHS[current.getMonth()]} ${current.getFullYear()}`
 
-const data = createHtml()
-document.querySelector('[data-content]').innerHTML = data   //createHtml(data)   
+const data = createData()
+document.querySelector('[data-content]').innerHTML = createHtml(data)   
