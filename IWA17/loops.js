@@ -170,8 +170,8 @@ const MONTHS = [
         days: [], //how to target .return value[1]
       };
   
-      for (let dayIndex = 0; dayIndex< 7; dayIndex++) {
-        let day = (dayIndex * 7)  - weekIndex +1;
+      for (let dayIndex in days) {
+        let day = dayIndex - startDay + 1 + weekIndex *7 
         const isValid = day > 0 && day <= daysInMonth;    
         
         value.days.push({
