@@ -77,7 +77,7 @@ let races = Object.keys(data.response.data.NM372.races).length
 let day = new Date(data.response.data.NM372.races[1].date).getDate() +' '+ MONTHS[11] +' '+ new Date(data.response.data.NM372.races[1].date).getFullYear()
 
 let timeAsArray = data.response.data.NM372.races[1].time[0] + data.response.data.NM372.races[1].time[1] + data.response.data.NM372.races[1].time[2] + data.response.data.NM372.races[1].time[3]
-timeAsArray = '00:' +timeAsArray
+timeAsArray = '00:' + timeAsArray
 
 
 // schalk/////////////////////////////////////////////
@@ -92,7 +92,7 @@ timeAsArraySchalk = '00:'+ timeAsArraySchalk
 
 ////OUTPUT///////////////////////////////////////////////
 const body = document.querySelector("body");
-const fragment = document.createDocumentFragment('dl');
+const fragment = document.createDocumentFragment();
 
 const athlete = [ 
   [ 'Athlete:' +' '+ Athlete,"Total Races: "+ races, 'Event Date : ' + day, 'Total Time: ' + timeAsArray],
@@ -117,7 +117,6 @@ for (let i = 0; i < 3; i++){
       const details = document.createElement("dd");
       details.textContent = athletes;
       fragment.appendChild(details);
-        
        });
        body.appendChild(fragment);
 

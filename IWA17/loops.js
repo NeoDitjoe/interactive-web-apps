@@ -145,20 +145,21 @@ const MONTHS = [
       result.push(i);
     }
   
-    return result;
+    return result;  
   };
   
 /////////////////////////////////function//////////////////////////////////////////////
 
   function createData(){
-    const weeks = createArray(5);
+    const weeks = createArray(7);
     const days = createArray(7);
     // return {weeks, days} //to log 1(weeks and days)
 
     const current = new Date();
-    current.setDate(2);
+    current.setDate(1);
     const startDay = current.getDay();
     const daysInMonth = getDaysInMonth(current);
+    
   
     
     let result = [];
@@ -169,13 +170,13 @@ const MONTHS = [
         days: [], //how to target .return value[1]
       };
   
-      for (let dayIndex in days) {
-        let day = dayIndex - startDay + 1;
+      for (let dayIndex = 0; dayIndex< 7; dayIndex++) {
+        let day = (dayIndex * 7)  - weekIndex +1;
         const isValid = day > 0 && day <= daysInMonth;    
         
         value.days.push({
-            dayOfWeek : dayIndex + 1,
-            value: isValid ? day : null,
+            //dayOfWeek : weekIndex + 1,
+            value: isValid ? day : ' ',
         });
       }
   
@@ -188,13 +189,13 @@ const MONTHS = [
 /////////////////////////////////function//////////////////////////////////////////////
   
   function addCell(existing, classString, value){
-    const result = /* html */ `
+    return /* html */ `${existing}
       <td class="${classString}">
-          ${value}
+      ${value}
       </td>
-      ${existing}
+      
     `;
-    return result;
+
   };
   
  /////////////////////////////////function//////////////////////////////////////////////  
@@ -207,10 +208,11 @@ const MONTHS = [
       const week = data[weekIndex];
       let inner = '';
   
-      inner = addCell(inner, 'table__cell table__cell_sidebar', `Week ${week}`);
-  
+      inner = addCell(inner, 'table__cell table__cell_sidebar', `Week ${weekIndex}`);
+      console.log(inner)
       for (let dayIndex in week.days) {
         const day = week.days[dayIndex];
+        
         let classString = 'table__cell';
         const isToday = new Date().getDate() === day.value;
         const isWeekend = day.dayOfWeek === 1 || day.dayOfWeek === 7;
@@ -229,7 +231,7 @@ const MONTHS = [
         inner = addCell(inner, classString, day.value);
       }
   
-      result = `<tr>${inner}</tr>`;
+      result +=`<tr>${inner}</tr>`;
     }
   
     return result;
