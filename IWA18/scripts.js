@@ -29,13 +29,13 @@ const handleDragOver = (event) => {
     updateDraggingHtml({ over: column })
 }
 // fetching help information
-const helpInformation = html.help.overlay
+
 
 // actions for when button is clicked
 const handleDragStart = (event) => {}
 const handleDragEnd = (event) => {}
 function handleHelpToggle(){
-    helpInformation.style.display = "block"
+    html.help.overlay.style.display = "block"
 }
 const handleAddToggle = (event) => {}
 const handleAddSubmit = (event) => {}
