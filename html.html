@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="pressed">Press Here</button>
+    <dialog id="body">
+        <h1 >I am  a Winner</h1>
+    </dialog>
+    <div>
+        <p>If i were you, i'd hate me too</p>
+    </div>
+</body>
+<script defer >
+    const body = document.querySelector('#body')
+    const pressed = document.querySelector('#pressed')
+
+    function Pressed(){
+        body.style.display = "block"
+        
+    }
+
+    pressed.addEventListener('click', Pressed)
+</script>
+</html>
