@@ -10,6 +10,7 @@ import { TABLES, COLUMNS, state } from './data.js'
  * @param {object} order 
  * @returns {HTMLElement}
  */
+
 export const createOrderHtml = (order) => {
     const { id, title, table, created } = order
 
@@ -52,7 +53,7 @@ export const createOrderHtml = (order) => {
 const createTableOptionsHtml = () => {
     const fragment = document.createDocumentFragment()
 
-    for (const singleTable of TABLES) {
+    for (const singleTable of TABLES) { 
         const option = document.createElement('option')
         option.value = singleTable
         option.innerText = singleTable

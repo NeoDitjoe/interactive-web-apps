@@ -1,70 +1,5 @@
 import {createOrderHtml, html, updateDraggingHtml, moveToColumn, } from  './view.js'
-import { createOrderData, updateDragging} from './data.js'
-
-
-
-// export const check = (/* order */) => {
-/*     const { id, title, table, created } = order
-
-    const element = document.createElement('div')
-    element.className = 'order'
-    element.draggable = true
-    element.dataset.id = id*/
-    const created = new Date
-
-    const hours = created.getHours().toString().padStart(2, '0')
-    const minutes = created.getMinutes().toString().padStart(2, '0') 
-
-    // element.innerHTML = /* html */ `
-    //     <div class="order__title" data-order-title>${html.add.title.value }</div>
-        
-    //     <dl class="order__details">
-    //         <div class="order__row">
-    //             <dt>Table:</dt>
-    //             <dd class="order__value" data-order-table>${html.add.title.value }</dd>
-    //         </div>
-
-    //         <div class="order__row">
-    //             <dt>Ordered:</dt>
-    //             <dd class="order__value">${hours}:${minutes}</dd>
-    //         </div>
-    //     </dl>
-    // `
-
-/*     return element
-} */
-
-
-
-const addButton = document.querySelector('button[form="add-form"]')
-
-
-const orderDiv = document.querySelector('[data-column]')
-
-function handleMe(){   
-    event.preventDefault()
-    html.add.overlay.style.display = 'none'
-
-    
-    orderDiv.innerHTML = 
-`
-    <div class="order__title" data-order-title>${html.add.title.value }</div>
-    
-     <dl class="order__details">
-         <div class="order__row">
-             <dt>Table:</dt>
-             <dd class="order__value" data-order-table>${html.add.table.value }</dd>
-         </div>
-
-        <div class="order__row">
-            <dt>Ordered:</dt>
-            <dd class="order__value">${hours}:${minutes}</dd>
-        </div>
-    </dl>
-`   
-}
-
-addButton.addEventListener('click', handleMe )
+import { createOrderData, updateDragging, state} from './data.js'
 
 /**
  * A handler that fires when a user drags over any element inside a column. In
@@ -77,6 +12,7 @@ addButton.addEventListener('click', handleMe )
  *              
  * @param {Event} event 
  */
+
 const handleDragOver = (event) => {
     event.preventDefault();
     const path = event.path || event.composedPath()
@@ -114,7 +50,24 @@ const handleAddCancel = () => {
     html.add.overlay.style.display = 'none'
     html.other.add.focus() 
 }
-const handleAddSubmit = (event) => {}
+const handleAddSubmit = (event) => {
+    event.preventDefault();
+
+    const title = html.add.title.value;
+    const table = html.add.table.value;
+
+    const id = Object.keys(state.orders).length + 1;
+    const created = new Date();
+    const order = { id, title, table, created };
+    state.orders[id] = order;
+
+    const orderElement = createOrderHtml(order);
+    html.area.ordered.append(orderElement);
+
+    html.add.form.reset();
+    html.add.overlay.close();
+}
+
 const handleEditToggle = (event) => {}
 const handleEditSubmit = (event) => {}
 const handleDelete = (event) => {}
