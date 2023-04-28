@@ -7,23 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="pressed">Press Here</button>
-    <dialog id="body">
-        <h1 >I am  a Winner</h1>
-    </dialog>
-    <div>
-        <p>If i were you, i'd hate me too</p>
-    </div>
+
+    <label>Enter your input:</label>
+    <input type="text" id="input-field">
+    <button onclick="displayInput()">Display Input</button>
+<p id="display"></p>
+
 </body>
 <script defer >
-    const body = document.querySelector('#body')
-    const pressed = document.querySelector('#pressed')
 
-    function Pressed(){
-        body.style.display = "block"
-        
-    }
+    function displayInput() {
+    var input = document.getElementById("input-field").value;
+    document.getElementById("display").innerHTML = input;
+}
 
-    pressed.addEventListener('click', Pressed)
 </script>
 </html>

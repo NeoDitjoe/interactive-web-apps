@@ -11,34 +11,36 @@ import { TABLES, COLUMNS, state } from './data.js'
  * @returns {HTMLElement}
  */
 export const createOrderHtml = (order) => {
-    const { id, title, table, created } = order
+    // const { id, title, table, created } = order
 
-    const element = document.createElement('div')
-    element.className = 'order'
-    element.draggable = true
-    element.dataset.id = id
+    // const element = document.createElement('div')
+    // element.className = 'order'
+    // element.draggable = true
+    // element.dataset.id = id
 
-    const hours = created.getHours().toString().padStart(2, '0')
-    const minutes = created.getMinutes().toString().padStart(2, '0')
+    // const hours = created.getHours().toString().padStart(2, '0')
+    // const minutes = created.getMinutes().toString().padStart(2, '0')
 
-    element.innerHTML = /* html */ `
-        <div class="order__title" data-order-title>${title}</div>
+    // element.innerHTML = /* html */ `
+    //     <div class="order__title" data-order-title>${title}</div>
         
-        <dl class="order__details">
-            <div class="order__row">
-                <dt>Table:</dt>
-                <dd class="order__value" data-order-table>${table}</dd>
-            </div>
+    //     <dl class="order__details">
+    //         <div class="order__row">
+    //             <dt>Table:</dt>
+    //             <dd class="order__value" data-order-table>${table}</dd>
+    //         </div>
 
-            <div class="order__row">
-                <dt>Ordered:</dt>
-                <dd class="order__value">${hours}:${minutes}</dd>
-            </div>
-        </dl>
-    `
+    //         <div class="order__row">
+    //             <dt>Ordered:</dt>
+    //             <dd class="order__value">${hours}:${minutes}</dd>
+    //         </div>
+    //     </dl>
+    // `
 
-    return element
+    // return element
 }
+
+ 
 
 /**
  * Since the tables in use, and their identification can be configured before
@@ -73,7 +75,7 @@ const createTableOptionsHtml = () => {
  */
 export const html = {
     columns: {},
-    area: {},
+    area: {},/* html.columns.push() */
     add: {
         overlay: document.querySelector('[data-add-overlay]'),
         form: document.querySelector('[data-add-form]'),

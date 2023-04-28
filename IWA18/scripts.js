@@ -1,5 +1,38 @@
 import {createOrderHtml, html, updateDraggingHtml, moveToColumn, } from  './view.js'
 import { createOrderData, updateDragging} from './data.js'
+
+
+
+export const check = (order) => {
+    const { id, title, table, created } = order
+
+    const element = document.createElement('div')
+    element.className = 'order'
+    element.draggable = true
+    element.dataset.id = id
+
+    const hours = created.getHours().toString().padStart(2, '0')
+    const minutes = created.getMinutes().toString().padStart(2, '0')
+
+    element.innerHTML = /* html */ `
+        <div class="order__title" data-order-title>${title}</div>
+        
+        <dl class="order__details">
+            <div class="order__row">
+                <dt>Table:</dt>
+                <dd class="order__value" data-order-table>${table}</dd>
+            </div>
+
+            <div class="order__row">
+                <dt>Ordered:</dt>
+                <dd class="order__value">${hours}:${minutes}</dd>
+            </div>
+        </dl>
+    `
+
+    return element
+}
+
 /**
  * A handler that fires when a user drags over any element inside a column. In
  * order to determine which column the user is dragging over the entire event
@@ -28,6 +61,24 @@ const handleDragOver = (event) => {
     updateDragging({ over: column })
     updateDraggingHtml({ over: column })
 }
+const addButton = document.querySelector('button[form="add-form"]')
+
+
+const orderDiv = document.querySelector('[data-column]')
+
+function handleMe(e){   
+    event.preventDefault()
+    orderDiv.innerHTML = html.add.title.value// html.add.title.value  //"NOW I DO WHAT I WANT"    
+}
+
+addButton.addEventListener('click', handleMe )
+
+
+
+
+
+
+
 
 
 // actions for when button is clicked
@@ -69,10 +120,6 @@ for (const htmlColumn of Object.values(html.columns)) {
     htmlColumn.addEventListener('dragstart', handleDragStart)
     htmlColumn.addEventListener('dragend', handleDragEnd)
 }
-
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
 }
-
-
-
