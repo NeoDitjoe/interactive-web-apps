@@ -43,6 +43,8 @@ const orderDiv = document.querySelector('[data-column]')
 
 function handleMe(){   
     event.preventDefault()
+    html.add.overlay.style.display = 'none'
+
     
     orderDiv.innerHTML = 
 `
@@ -59,7 +61,7 @@ function handleMe(){
             <dd class="order__value">${hours}:${minutes}</dd>
         </div>
     </dl>
-` //"NOW I DO WHAT I WANT"    
+`   
 }
 
 addButton.addEventListener('click', handleMe )
