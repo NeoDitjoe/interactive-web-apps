@@ -66,6 +66,8 @@ const handleAddSubmit = (event) => {
 
     html.add.form.reset();
     html.add.overlay.close();
+    html.add.overlay.style.display = 'none'
+
 }
 
 const handleEditToggle = (event) => {}
@@ -91,3 +93,4 @@ for (const htmlColumn of Object.values(html.columns)) {
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
 }
+
