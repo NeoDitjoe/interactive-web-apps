@@ -50,33 +50,31 @@ const handleAddCancel = () => {
     html.add.overlay.style.display = 'none'
     html.other.add.focus() 
 }
-const handleAddSubmit = (event) => {
+const handleAddSubmit = () => {
     event.preventDefault();
-
     const title = html.add.title.value;
     const table = html.add.table.value;
-
-    const id = Object.keys(state.orders).length + 1;
+    
     const created = new Date();
-    const order = { id, title, table, created };
-    state.orders[id] = order;
+    const order = {title, table, created };
 
-    const orderElement = createOrderHtml(order);
-    html.area.ordered.append(orderElement);
-
+    html.area.ordered.append(createOrderHtml(order));
     html.add.form.reset();
-    html.add.overlay.close();
     html.add.overlay.style.display = 'none'
 
 }
 
-const handleEditToggle = (event) => {}
+
+
+const handleEditToggle = (event) => {
+    html.edit.overlay.style.display = "block"
+}
 const handleEditSubmit = (event) => {}
 const handleDelete = (event) => {}
 
 html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
-html.add.form.addEventListener('submit', handleAddSubmit)
+html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
 html.other.grid.addEventListener('click', handleEditToggle)
 html.edit.cancel.addEventListener('click', handleEditToggle)
@@ -92,5 +90,7 @@ for (const htmlColumn of Object.values(html.columns)) {
 }
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
+   
 }
+
 
