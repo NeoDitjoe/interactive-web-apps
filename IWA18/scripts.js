@@ -72,13 +72,27 @@ const handleAddSubmit = () => {
 
 const handleEditToggle = (event) => {
     html.edit.overlay.style.display = "block"
+
+    html.edit.title.value = value
 }
 
 const handleEditCancel = (event) => {
     html.edit.overlay.style.display = "none"
 }
 
-const handleEditSubmit = (event) => {}
+const handleEditSubmit = (event) => {
+    event.preventDefault();
+    const title = html.edit.title.value;
+    const table = html.edit.table.value;
+    
+    const created = new Date();
+    const order = {title, table, created };
+
+    html.area.ordered.append(createOrderHtml(order));
+    html.edit.form.reset();
+    html.edit.overlay.style.display = "none"
+
+}
 const handleDelete = (event) => {}
 
 html.add.cancel.addEventListener('click', handleAddCancel) //used
