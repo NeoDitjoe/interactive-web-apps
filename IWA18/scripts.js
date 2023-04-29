@@ -38,18 +38,22 @@ const handleDragEnd = (event) => {}
 const handleHelpToggle = (event)  => {
     html.help.overlay.style.display = "block"
 }
+
 function handleHelpCancel(){
     html.help.overlay.style.display = "none"
     html.other.add.focus()    
 }
+
 const handleAddToggle = () => {
     html.add.overlay.style.display = 'block'
     
 }
+
 const handleAddCancel = () => {
     html.add.overlay.style.display = 'none'
     html.other.add.focus() 
 }
+
 const handleAddSubmit = () => {
     event.preventDefault();
     const title = html.add.title.value;
@@ -69,6 +73,11 @@ const handleAddSubmit = () => {
 const handleEditToggle = (event) => {
     html.edit.overlay.style.display = "block"
 }
+
+const handleEditCancel = (event) => {
+    html.edit.overlay.style.display = "none"
+}
+
 const handleEditSubmit = (event) => {}
 const handleDelete = (event) => {}
 
@@ -76,8 +85,8 @@ html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
 html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
-html.other.grid.addEventListener('click', handleEditToggle)
-html.edit.cancel.addEventListener('click', handleEditToggle)
+html.other.grid.addEventListener('click', handleEditToggle) //used 
+html.edit.cancel.addEventListener('click', handleEditCancel) //used
 html.edit.form.addEventListener('submit', handleEditSubmit)
 html.edit.delete.addEventListener('click', handleDelete)
 
