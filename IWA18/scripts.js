@@ -72,7 +72,7 @@ const handleAddSubmit = (event) => {
     html.add.form.reset();
 
     html.add.overlay.style.display = 'none'
-    console.log(document.querySelector('[data-area="ordered"]'))
+
   
 }
 
@@ -109,15 +109,11 @@ const handleEditSubmit = (event) => {
 
 }
 const handleDelete = (event) => {
-    handleAddSubmit()
     html.edit.overlay.style.display = "none";
     parent = document.querySelector('[data-area="ordered"]')
-    
-     if (event.target.classList.contains('order')){
-        parent.removeChild(parent.children(state.orders[event.target.dataset.id]))
-     }
-     console.log(state.orders[event.target.dataset.id])
-    
+    //parent.removeChild(parent.children[html.area.ordered[1]])
+
+    console.log(parent.children[html.area.ordered[id]])
 }
 
 
