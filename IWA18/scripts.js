@@ -1,5 +1,6 @@
 import {createOrderHtml, html, updateDraggingHtml, moveToColumn, } from  './view.js'
 import { createOrderData, updateDragging, state} from './data.js'
+//const updateOrder = document.querySelector('button[form="edit-form"]').addEventListener('click', UpdateOrderButton)
 
 /**
  * A handler that fires when a user drags over any element inside a column. In
@@ -71,6 +72,7 @@ const handleAddSubmit = (event) => {
     html.add.form.reset();
 
     html.add.overlay.style.display = 'none'
+    console.log(document.querySelector('[data-area="ordered"]'))
   
 }
 
@@ -81,7 +83,9 @@ html.area.ordered.addEventListener('click', (event) => {
         html.edit.table.value = state.orders[event.target.dataset.id].table
    
         html.edit.overlay.style.display = "block";
+        
     }
+  
 });
 
 
@@ -104,10 +108,17 @@ const handleEditSubmit = (event) => {
     html.edit.overlay.style.display = "none"
 
 }
-const handleDelete = (event) => {}
-
-
-
+const handleDelete = (event) => {
+    handleAddSubmit()
+    html.edit.overlay.style.display = "none";
+    parent = document.querySelector('[data-area="ordered"]')
+    
+     if (event.target.classList.contains('order')){
+        parent.removeChild(parent.children(state.orders[event.target.dataset.id]))
+     }
+     console.log(state.orders[event.target.dataset.id])
+    
+}
 
 
 
