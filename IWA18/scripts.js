@@ -54,27 +54,38 @@ const handleAddCancel = () => {
     html.other.add.focus() 
 }
 
-const handleAddSubmit = () => {
+
+const handleAddSubmit = (event) => {
     event.preventDefault();
     const title = html.add.title.value;
     const table = html.add.table.value;
-    
+
+    const id = Object.keys(state.orders).length + 1;
     const created = new Date();
-    const order = {title, table, created };
+    const order = {id, title, table, created };
+    state.orders[id] = order;
 
-    html.area.ordered.append(createOrderHtml(order));
+    const orderElement = createOrderHtml(order)
+    html.area.ordered.append(orderElement);
+    
     html.add.form.reset();
+
     html.add.overlay.style.display = 'none'
-
+  
 }
 
+html.area.ordered.addEventListener('click', (event) => {
+    if (event.target.classList.contains('order')) {
+    
+        html.edit.title.value = state.orders[event.target.dataset.id].title
+        html.edit.table.value = state.orders[event.target.dataset.id].table
+   
+        html.edit.overlay.style.display = "block";
+    }
+});
 
 
-const handleEditToggle = (event) => {
-    html.edit.overlay.style.display = "block"
-
-    html.edit.title.value = value
-}
+const handleEditToggle = (event) => {}
 
 const handleEditCancel = (event) => {
     html.edit.overlay.style.display = "none"
@@ -95,11 +106,18 @@ const handleEditSubmit = (event) => {
 }
 const handleDelete = (event) => {}
 
+
+
+
+
+
+
+
 html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
 html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
-html.other.grid.addEventListener('click', handleEditToggle) //used 
+html.other.grid.addEventListener('click', handleEditToggle) 
 html.edit.cancel.addEventListener('click', handleEditCancel) //used
 html.edit.form.addEventListener('submit', handleEditSubmit)
 html.edit.delete.addEventListener('click', handleDelete)

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="comments">
+        <input type="text" id="comment-input">
+        <button type="button" id="submit-comment">Add Comment</button>
+      </div>
+      
+</body>
+<script>
+    // Get the input and button elements
+const commentInput = document.getElementById('comment-input');
+const submitButton = document.getElementById('submit-comment');
+
+// Add a click event listener to the submit button
+submitButton.addEventListener('click', event => {
+  // Get the text of the comment input
+  const commentText = commentInput.value;
+
+  // Create a new comment element
+  const newCommentElement = createCommentElement(commentText);
+
+  // Add a click event listener to the new comment element
+  newCommentElement.addEventListener('click', event => {
+    // Get the ID of the clicked comment element
+    const commentId = event.target.dataset.id;
+
+    // Use the ID to retrieve the corresponding comment data
+    const commentData = getCommentData(commentId);
+
+    // Do something with the selected comment data, such as display more information
+    displayCommentData(commentData);
+
+    // Add a class to the clicked comment element to highlight it
+    newCommentElement.classList.add('selected');
+  });
+
+  // Add the new comment element to the DOM
+  const commentsContainer = document.querySelector('.comments');
+  commentsContainer.appendChild(newCommentElement);
+
+  // Clear the comment input
+  commentInput.value = '';
+});
+
+function createCommentElement(commentText) {
+  // Create a new comment element with a unique ID and the comment text
+  const newCommentElement = document.createElement('div');
+  newCommentElement.className = 'comment';
+  newCommentElement.dataset.id = generateUniqueId();
+  newCommentElement.textContent = commentText;
+
+  return newCommentElement;
+}
+
+function generateUniqueId() {
+  // Replace this with code to generate a unique ID for each new comment element
+  return Math.random().toString(36).substring(2, 15);
+}
+
+// The getCommentData() and displayCommentData() functions are the same as in the previous example
+
+</script>
+</html>
