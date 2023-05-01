@@ -68,30 +68,22 @@ const handleAddSubmit = (event) => {
     state.orders[id] = order;
 
     const orderElement = createOrderHtml(order);
-    orderElement.setAttribute('data-id', id);
 
-    // delete button 
-    const deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    deleteButton.setAttribute('data-id', id);
+     // delete button 
+    //  const deleteButton = document.createElement('button');
+    //  deleteButton.innerText = 'Delete';
+    //  deleteButton.setAttribute('data-id', id);
 
-    deleteButton.addEventListener('click', (event) => {
-        const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-        orderDiv.remove();
-    });
-    orderElement.appendChild(deleteButton);
+    //  deleteButton.addEventListener('click', (event) => {
+    //      const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+    //      orderDiv.remove();
+    //  });
+    //  orderElement.appendChild(deleteButton);
     html.area.ordered.append(orderElement);   
 
     html.add.form.reset();
     html.add.overlay.style.display = 'none';
     html.other.add.focus() 
-
-    html.edit.delete.addEventListener('click', (event) =>
-    {
-        event.preventDefault()
-        html.edit.overlay.style.display = "none";
-    })
-
 
     html.area.ordered.addEventListener('click', (event) => {
         event.preventDefault()
@@ -103,6 +95,16 @@ const handleAddSubmit = (event) => {
             html.edit.table.value = state.orders[orderId].table;
 
             html.edit.overlay.style.display = "block";
+
+        html.edit.delete.addEventListener('click', (event) => {
+
+                event.preventDefault()
+                
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.ordered.removeChild(existingOrderElement);
+                html.edit.overlay.style.display = "none";
+                
+            })
 
         html.edit.form.addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -119,14 +121,14 @@ const handleAddSubmit = (event) => {
                 newOrderElement.setAttribute('data-id', orderId);
 
             
-                const newDeleteButton = document.createElement('button');
-                newDeleteButton.innerText = 'Delete';
-                newDeleteButton.setAttribute('data-id', orderId);
-                newDeleteButton.addEventListener('click', (event) => {
-                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                    orderDiv.remove();
-                });
-                newOrderElement.appendChild(newDeleteButton);
+                // const newDeleteButton = document.createElement('button');
+                // newDeleteButton.innerText = 'Delete';
+                // newDeleteButton.setAttribute('data-id', orderId);
+                // newDeleteButton.addEventListener('click', (event) => {
+                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                //     orderDiv.remove();
+                // });
+                // newOrderElement.appendChild(newDeleteButton);
 
             
             
@@ -159,7 +161,17 @@ const handleAddSubmit = (event) => {
 
             html.edit.overlay.style.display = "block";
 
-        html.edit.form.addEventListener('submit', (event) => {
+    html.edit.delete.addEventListener('click', (event) => {
+
+                event.preventDefault()
+                
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.preparing.removeChild(existingOrderElement);
+                html.edit.overlay.style.display = "none";
+                
+            })
+
+    html.edit.form.addEventListener('submit', (event) => {
                 event.preventDefault();
 
         
@@ -174,14 +186,14 @@ const handleAddSubmit = (event) => {
                 newOrderElement.setAttribute('data-id', orderId);
 
             
-                const newDeleteButton = document.createElement('button');
-                newDeleteButton.innerText = 'Delete';
-                newDeleteButton.setAttribute('data-id', orderId);
-                newDeleteButton.addEventListener('click', (event) => {
-                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                    orderDiv.remove();
-                });
-                newOrderElement.appendChild(newDeleteButton);
+                // const newDeleteButton = document.createElement('button');
+                // newDeleteButton.innerText = 'Delete';
+                // newDeleteButton.setAttribute('data-id', orderId);
+                // newDeleteButton.addEventListener('click', (event) => {
+                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                //     orderDiv.remove();
+                // });
+                // newOrderElement.appendChild(newDeleteButton);
 
             
             
@@ -213,7 +225,17 @@ const handleAddSubmit = (event) => {
 
             html.edit.overlay.style.display = "block";
 
-        html.edit.form.addEventListener('submit', (event) => {
+    html.edit.delete.addEventListener('click', (event) => {
+
+                event.preventDefault()
+                
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.served.removeChild(existingOrderElement);
+                html.edit.overlay.style.display = "none";
+                
+            })
+
+    html.edit.form.addEventListener('submit', (event) => {
                 event.preventDefault();
 
         
@@ -228,14 +250,14 @@ const handleAddSubmit = (event) => {
                 newOrderElement.setAttribute('data-id', orderId);
 
             
-                const newDeleteButton = document.createElement('button');
-                newDeleteButton.innerText = 'Delete';
-                newDeleteButton.setAttribute('data-id', orderId);
-                newDeleteButton.addEventListener('click', (event) => {
-                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                    orderDiv.remove();
-                });
-                newOrderElement.appendChild(newDeleteButton);
+                // const newDeleteButton = document.createElement('button');
+                // newDeleteButton.innerText = 'Delete';
+                // newDeleteButton.setAttribute('data-id', orderId);
+                // newDeleteButton.addEventListener('click', (event) => {
+                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                //     orderDiv.remove();
+                // });
+                // newOrderElement.appendChild(newDeleteButton);
 
             
             
