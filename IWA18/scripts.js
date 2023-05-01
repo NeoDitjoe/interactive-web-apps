@@ -69,22 +69,13 @@ const handleAddSubmit = (event) => {
 
     const orderElement = createOrderHtml(order);
 
-     // delete button 
-    //  const deleteButton = document.createElement('button');
-    //  deleteButton.innerText = 'Delete';
-    //  deleteButton.setAttribute('data-id', id);
-
-    //  deleteButton.addEventListener('click', (event) => {
-    //      const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-    //      orderDiv.remove();
-    //  });
-    //  orderElement.appendChild(deleteButton);
     html.area.ordered.append(orderElement);   
 
     html.add.form.reset();
     html.add.overlay.style.display = 'none';
     html.other.add.focus() 
 
+ 
     html.area.ordered.addEventListener('click', (event) => {
         event.preventDefault()
         if (event.target.classList.contains('order')) {
@@ -96,15 +87,19 @@ const handleAddSubmit = (event) => {
 
             html.edit.overlay.style.display = "block";
 
+
+
         html.edit.delete.addEventListener('click', (event) => {
 
                 event.preventDefault()
                 
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
                 html.area.ordered.removeChild(existingOrderElement);
+                
                 html.edit.overlay.style.display = "none";
                 
             })
+
 
         html.edit.form.addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -117,20 +112,10 @@ const handleAddSubmit = (event) => {
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
                 html.area.ordered.removeChild(existingOrderElement);
 
+                
                 const newOrderElement = createOrderHtml(state.orders[orderId]);
                 newOrderElement.setAttribute('data-id', orderId);
-
-            
-                // const newDeleteButton = document.createElement('button');
-                // newDeleteButton.innerText = 'Delete';
-                // newDeleteButton.setAttribute('data-id', orderId);
-                // newDeleteButton.addEventListener('click', (event) => {
-                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                //     orderDiv.remove();
-                // });
-                // newOrderElement.appendChild(newDeleteButton);
-
-            
+          
             
                 const select = document.querySelector('[name="column"]')
                 if (select.value == 'ordered') {
@@ -186,17 +171,6 @@ const handleAddSubmit = (event) => {
                 newOrderElement.setAttribute('data-id', orderId);
 
             
-                // const newDeleteButton = document.createElement('button');
-                // newDeleteButton.innerText = 'Delete';
-                // newDeleteButton.setAttribute('data-id', orderId);
-                // newDeleteButton.addEventListener('click', (event) => {
-                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                //     orderDiv.remove();
-                // });
-                // newOrderElement.appendChild(newDeleteButton);
-
-            
-            
                 const select = document.querySelector('[name="column"]')
                 if (select.value == 'ordered') {
                 console.log('Order has been placed');
@@ -248,16 +222,6 @@ const handleAddSubmit = (event) => {
 
                 const newOrderElement = createOrderHtml(state.orders[orderId]);
                 newOrderElement.setAttribute('data-id', orderId);
-
-            
-                // const newDeleteButton = document.createElement('button');
-                // newDeleteButton.innerText = 'Delete';
-                // newDeleteButton.setAttribute('data-id', orderId);
-                // newDeleteButton.addEventListener('click', (event) => {
-                //     const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
-                //     orderDiv.remove();
-                // });
-                // newOrderElement.appendChild(newDeleteButton);
 
             
             
