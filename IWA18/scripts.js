@@ -68,15 +68,15 @@ const handleAddSubmit = (event) => {
     state.orders[id] = order;
 
     const orderElement = createOrderHtml(order);
-    
-    html.area.ordered.append(orderElement);   
+    const columnOrdered = document.querySelector('[data-column="ordered"]')
+    columnOrdered.append(orderElement);   
 
     html.add.form.reset();
     html.add.overlay.style.display = 'none';
     html.other.add.focus() 
 
  
-    html.area.ordered.addEventListener('click', (event) => {
+    columnOrdered.addEventListener('click', (event) => {
         event.preventDefault()
         if (event.target.classList.contains('order')) {
 
@@ -94,7 +94,7 @@ const handleAddSubmit = (event) => {
                 event.preventDefault()
                 
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.ordered.removeChild(existingOrderElement);
+                columnOrdered.removeChild(existingOrderElement);
                 
                 html.edit.overlay.style.display = "none";
                 
@@ -110,7 +110,7 @@ const handleAddSubmit = (event) => {
 
          
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.ordered.removeChild(existingOrderElement);
+                columnOrdered.removeChild(existingOrderElement);
 
                 
                 const newOrderElement = createOrderHtml(state.orders[orderId]);
@@ -120,13 +120,13 @@ const handleAddSubmit = (event) => {
                 const select = document.querySelector('[name="column"]')
                 if (select.value == 'ordered') {
                 console.log('Order has been placed');
-                html.area.ordered.append(newOrderElement);
+                columnOrdered.append(newOrderElement);
                 } else if (select.value == 'preparing') {
                 console.log('Order is being prepared');
-                html.area.preparing.append(newOrderElement);
+                columnPreparing.append(newOrderElement);
                 } else if (select.value == 'served') {
                 console.log('Order has been delivered');
-                html.area.served.append(newOrderElement);
+                columnServed.append(newOrderElement);
                 } 
                 html.edit.overlay.style.display = "none";
             });
@@ -134,7 +134,8 @@ const handleAddSubmit = (event) => {
     });
 
 //preparing column
-    html.area.preparing.addEventListener('click', (event) => {
+const columnPreparing = document.querySelector('[data-column="preparing"]')
+    columnPreparing.addEventListener('click', (event) => {
         event.preventDefault()
         if (event.target.classList.contains('order')) {
 
@@ -150,7 +151,7 @@ const handleAddSubmit = (event) => {
                 event.preventDefault()
                 
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.preparing.removeChild(existingOrderElement);
+                columnPreparing.removeChild(existingOrderElement);
                 html.edit.overlay.style.display = "none";
                 
             })
@@ -164,7 +165,7 @@ const handleAddSubmit = (event) => {
 
          
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.preparing.removeChild(existingOrderElement);
+                columnPreparing.removeChild(existingOrderElement);
 
                 const newOrderElement = createOrderHtml(state.orders[orderId]);
                 newOrderElement.setAttribute('data-id', orderId);
@@ -173,13 +174,13 @@ const handleAddSubmit = (event) => {
                 const select = document.querySelector('[name="column"]')
                 if (select.value == 'ordered') {
                 console.log('Order has been placed');
-                html.area.ordered.append(newOrderElement);
+                columnOrdered.append(newOrderElement);
                 } else if (select.value == 'preparing') {
                 console.log('Order is being prepared');
-                html.area.preparing.append(newOrderElement);
+                columnPreparing.append(newOrderElement);
                 } else if (select.value == 'served') {
                 console.log('Order has been delivered');
-                html.area.served.append(newOrderElement);
+                columnServed.append(newOrderElement);
                 } 
                 html.edit.overlay.style.display = "none";
             });
@@ -187,7 +188,8 @@ const handleAddSubmit = (event) => {
     });
 
     //served block
-    html.area.served.addEventListener('click', (event) => {
+    const columnServed = document.querySelector('[data-column="served"]')
+    columnServed.addEventListener('click', (event) => {
         event.preventDefault()
         if (event.target.classList.contains('order')) {
 
@@ -203,7 +205,7 @@ const handleAddSubmit = (event) => {
                 event.preventDefault()
                 
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.served.removeChild(existingOrderElement);
+                columnServed.removeChild(existingOrderElement);
                 html.edit.overlay.style.display = "none";
                 
             })
@@ -217,7 +219,7 @@ const handleAddSubmit = (event) => {
 
          
                 const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                html.area.served.removeChild(existingOrderElement);
+                columnServed.removeChild(existingOrderElement);
 
                 const newOrderElement = createOrderHtml(state.orders[orderId]);
                 newOrderElement.setAttribute('data-id', orderId);
@@ -227,13 +229,13 @@ const handleAddSubmit = (event) => {
                 const select = document.querySelector('[name="column"]')
                 if (select.value == 'ordered') {
                 console.log('Order has been placed');
-                html.area.ordered.append(newOrderElement);
+                columnOrdered.append(newOrderElement);
                 } else if (select.value == 'preparing') {
                 console.log('Order is being prepared');
-                html.area.preparing.append(newOrderElement);
+                columnPreparing.append(newOrderElement);
                 } else if (select.value == 'served') {
                 console.log('Order has been delivered');
-                html.area.served.append(newOrderElement);
+                columnServed.append(newOrderElement);
                 } 
                 html.edit.overlay.style.display = "none";
             });
