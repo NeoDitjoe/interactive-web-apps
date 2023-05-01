@@ -68,7 +68,7 @@ const handleAddSubmit = (event) => {
     state.orders[id] = order;
 
     const orderElement = createOrderHtml(order);
-
+    
     html.area.ordered.append(orderElement);   
 
     html.add.form.reset();
@@ -132,7 +132,6 @@ const handleAddSubmit = (event) => {
             });
         }   
     });
-
 
 //preparing column
     html.area.preparing.addEventListener('click', (event) => {
@@ -239,24 +238,8 @@ const handleAddSubmit = (event) => {
                 html.edit.overlay.style.display = "none";
             });
         }   
-    });
-
-    
+    });    
 };
-
-  
-
-// const handleEditSubmit = (event) => {
-//     event.preventDefault()
-//     // html.edit.overlay.style.display = "none"
-//     // html.edit.form.reset();
-//     console.log('dhh')
-//     const Neo = 'Cozy'
-
-// }
-
-
-
 
 
 const handleEditToggle = (event) => {}
@@ -266,21 +249,12 @@ const handleEditCancel = (event) => {
 }
 
 
-
-//    const handleDelete = (event) => {
-   
-//    html.edit.overlay.style.display = "none";
-
-// }
-
 html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
 html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
 html.other.grid.addEventListener('click', handleEditToggle) 
 html.edit.cancel.addEventListener('click', handleEditCancel) //used
-// html.edit.form.addEventListener('submit', handleEditSubmit) //used
-//html.edit.delete.addEventListener('click', handleDelete) //barely used
 
 html.help.cancel.addEventListener('click', handleHelpCancel) //used
 html.other.help.addEventListener('click', handleHelpToggle) // used
