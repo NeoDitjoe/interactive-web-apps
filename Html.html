@@ -1,70 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="comments">
-        <input type="text" id="comment-input">
-        <button type="button" id="submit-comment">Add Comment</button>
-      </div>
-      
-</body>
-<script>
-    // Get the input and button elements
-const commentInput = document.getElementById('comment-input');
-const submitButton = document.getElementById('submit-comment');
+const handleAddSubmit = (event) => {
+  event.preventDefault();
+  const title = html.add.title.value;
+  const table = html.add.table.value;
 
-// Add a click event listener to the submit button
-submitButton.addEventListener('click', event => {
-  // Get the text of the comment input
-  const commentText = commentInput.value;
+  const id = Object.keys(state.orders).length + 1;
+  const created = new Date();
+  const order = { id, title, table, created };
+  state.orders[id] = order;
 
-  // Create a new comment element
-  const newCommentElement = createCommentElement(commentText);
+  const orderElement = createOrderHtml(order);
+  orderElement.setAttribute('data-id', id);
 
-  // Add a click event listener to the new comment element
-  newCommentElement.addEventListener('click', event => {
-    // Get the ID of the clicked comment element
-    const commentId = event.target.dataset.id;
+  // delete button
+  const deleteButton = document.createElement('button');
+  deleteButton.innerText = 'Delete';
+  deleteButton.setAttribute('data-id', id);
 
-    // Use the ID to retrieve the corresponding comment data
-    const commentData = getCommentData(commentId);
-
-    // Do something with the selected comment data, such as display more information
-    displayCommentData(commentData);
-
-    // Add a class to the clicked comment element to highlight it
-    newCommentElement.classList.add('selected');
+  deleteButton.addEventListener('click', (event) => {
+    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+    orderDiv.remove();
   });
 
-  // Add the new comment element to the DOM
-  const commentsContainer = document.querySelector('.comments');
-  commentsContainer.appendChild(newCommentElement);
+  orderElement.appendChild(deleteButton);
+  html.area.ordered.append(orderElement);
 
-  // Clear the comment input
-  commentInput.value = '';
-});
+  html.add.form.reset();
+  html.add.overlay.style.display = 'none';
+  html.other.add.focus();
 
-function createCommentElement(commentText) {
-  // Create a new comment element with a unique ID and the comment text
-  const newCommentElement = document.createElement('div');
-  newCommentElement.className = 'comment';
-  newCommentElement.dataset.id = generateUniqueId();
-  newCommentElement.textContent = commentText;
+  html.area.ordered.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (event.target.classList.contains('order')) {
+      html.edit.title.value = state.orders[event.target.dataset.id].title;
+      html.edit.table.value = state.orders[event.target.dataset.id].table;
 
-  return newCommentElement;
-}
+      html.edit.overlay.style.display = 'block';
 
-function generateUniqueId() {
-  // Replace this with code to generate a unique ID for each new comment element
-  return Math.random().toString(36).substring(2, 15);
-}
 
-// The getCommentData() and displayCommentData() functions are the same as in the previous example
+  html.edit.form.addEventListener('submit', (event) => 
+      event.preventDefault(),
+        
+      //const updateTitle = html.edit.title//.value;
+      const updateTable = html.edit.table//.value;
 
-</script>
-</html>
+      //state.orders[event.target.dataset.id]/* .title */ = 
+      state.orders[event.target.dataset.id]/* .table */ = updateTable
+
+      const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+      orderDiv.querySelector('[.class="order_title"]').textContent = newTitle;
+      orderDiv.querySelector('[.class="order_table"]').textContent = newTable;
+
+      html.edit.overlay.style.display = 'none';
+      html.edit.form.reset();
+    
+      );
+    }
+  });
+};

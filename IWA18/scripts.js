@@ -46,6 +46,7 @@ function handleHelpCancel(){
 }
 
 const handleAddToggle = () => {
+    
     html.add.overlay.style.display = 'block'
     
 }
@@ -66,27 +67,83 @@ const handleAddSubmit = (event) => {
     const order = {id, title, table, created };
     state.orders[id] = order;
 
-    const orderElement = createOrderHtml(order)
-    html.area.ordered.append(orderElement);
-    
+    const orderElement = createOrderHtml(order);
+    orderElement.setAttribute('data-id', id);
+
+    // delete button 
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.setAttribute('data-id', id);
+
+    deleteButton.addEventListener('click', (event) => {
+        const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+        orderDiv.remove();
+    });
+    orderElement.appendChild(deleteButton);
+    html.area.ordered.append(orderElement);   
+
     html.add.form.reset();
+    html.add.overlay.style.display = 'none';
+    html.other.add.focus() 
 
-    html.add.overlay.style.display = 'none'
 
-  
-}
+    html.area.ordered.addEventListener('click', (event) => {
+        event.preventDefault()
+        if (event.target.classList.contains('order')) {
 
-html.area.ordered.addEventListener('click', (event) => {
-    if (event.target.classList.contains('order')) {
-    
-        html.edit.title.value = state.orders[event.target.dataset.id].title
-        html.edit.table.value = state.orders[event.target.dataset.id].table
-   
-        html.edit.overlay.style.display = "block";
+            const orderId = event.target.dataset.id;
+            
+            html.edit.title.value = state.orders[orderId].title;
+            html.edit.table.value = state.orders[orderId].table;
+
+            html.edit.overlay.style.display = "block";
+
+            html.edit.form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
         
-    }
+                state.orders[orderId].title = html.edit.title.value;
+                state.orders[orderId].table = html.edit.table.value;
+
+         
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.ordered.removeChild(existingOrderElement);
+
+                const newOrderElement = createOrderHtml(state.orders[orderId]);
+                newOrderElement.setAttribute('data-id', orderId);
+
+            
+                const newDeleteButton = document.createElement('button');
+                newDeleteButton.innerText = 'Delete';
+                newDeleteButton.setAttribute('data-id', orderId);
+                newDeleteButton.addEventListener('click', (event) => {
+                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                    orderDiv.remove();
+                });
+                newOrderElement.appendChild(newDeleteButton);
+
+              
+                html.area.preparing.append(newOrderElement);
+
+                html.edit.overlay.style.display = "none";
+            });
+        }   
+    });
+};
+
   
-});
+
+// const handleEditSubmit = (event) => {
+//     event.preventDefault()
+//     // html.edit.overlay.style.display = "none"
+//     // html.edit.form.reset();
+//     console.log('dhh')
+//     const Neo = 'Cozy'
+
+// }
+
+
+
 
 
 const handleEditToggle = (event) => {}
@@ -95,30 +152,13 @@ const handleEditCancel = (event) => {
     html.edit.overlay.style.display = "none"
 }
 
-const handleEditSubmit = (event) => {
-    event.preventDefault();
-    const title = html.edit.title.value;
-    const table = html.edit.table.value;
-    
-    const created = new Date();
-    const order = {title, table, created };
 
-    html.area.ordered.append(createOrderHtml(order));
-    html.edit.form.reset();
-    html.edit.overlay.style.display = "none"
+
+   const handleDelete = (event) => {
+   
+   html.edit.overlay.style.display = "none";
 
 }
-const handleDelete = (event) => {
-    html.edit.overlay.style.display = "none";
-    parent = document.querySelector('[data-area="ordered"]')
-    //parent.removeChild(parent.children[html.area.ordered[1]])
-
-    console.log(parent.children[html.area.ordered[id]])
-}
-
-
-
-
 
 html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
@@ -126,8 +166,8 @@ html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
 html.other.grid.addEventListener('click', handleEditToggle) 
 html.edit.cancel.addEventListener('click', handleEditCancel) //used
-html.edit.form.addEventListener('submit', handleEditSubmit)
-html.edit.delete.addEventListener('click', handleDelete)
+// html.edit.form.addEventListener('submit', handleEditSubmit) //used
+html.edit.delete.addEventListener('click', handleDelete) //barely used
 
 html.help.cancel.addEventListener('click', handleHelpCancel) //used
 html.other.help.addEventListener('click', handleHelpToggle) // used
@@ -140,5 +180,4 @@ for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver)
    
 }
-
 
