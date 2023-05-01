@@ -86,6 +86,12 @@ const handleAddSubmit = (event) => {
     html.add.overlay.style.display = 'none';
     html.other.add.focus() 
 
+    html.edit.delete.addEventListener('click', (event) =>
+    {
+        event.preventDefault()
+        html.edit.overlay.style.display = "none";
+    })
+
 
     html.area.ordered.addEventListener('click', (event) => {
         event.preventDefault()
@@ -98,7 +104,7 @@ const handleAddSubmit = (event) => {
 
             html.edit.overlay.style.display = "block";
 
-            html.edit.form.addEventListener('submit', (event) => {
+        html.edit.form.addEventListener('submit', (event) => {
                 event.preventDefault();
 
         
@@ -122,13 +128,134 @@ const handleAddSubmit = (event) => {
                 });
                 newOrderElement.appendChild(newDeleteButton);
 
-              
+            
+            
+                const select = document.querySelector('[name="column"]')
+                if (select.value == 'ordered') {
+                console.log('Order has been placed');
+                html.area.ordered.append(newOrderElement);
+                } else if (select.value == 'preparing') {
+                console.log('Order is being prepared');
                 html.area.preparing.append(newOrderElement);
-
+                } else if (select.value == 'served') {
+                console.log('Order has been delivered');
+                html.area.served.append(newOrderElement);
+                } 
                 html.edit.overlay.style.display = "none";
             });
         }   
     });
+
+
+//preparing column
+    html.area.preparing.addEventListener('click', (event) => {
+        event.preventDefault()
+        if (event.target.classList.contains('order')) {
+
+            const orderId = event.target.dataset.id;
+            
+            html.edit.title.value = state.orders[orderId].title;
+            html.edit.table.value = state.orders[orderId].table;
+
+            html.edit.overlay.style.display = "block";
+
+        html.edit.form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+        
+                state.orders[orderId].title = html.edit.title.value;
+                state.orders[orderId].table = html.edit.table.value;
+
+         
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.preparing.removeChild(existingOrderElement);
+
+                const newOrderElement = createOrderHtml(state.orders[orderId]);
+                newOrderElement.setAttribute('data-id', orderId);
+
+            
+                const newDeleteButton = document.createElement('button');
+                newDeleteButton.innerText = 'Delete';
+                newDeleteButton.setAttribute('data-id', orderId);
+                newDeleteButton.addEventListener('click', (event) => {
+                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                    orderDiv.remove();
+                });
+                newOrderElement.appendChild(newDeleteButton);
+
+            
+            
+                const select = document.querySelector('[name="column"]')
+                if (select.value == 'ordered') {
+                console.log('Order has been placed');
+                html.area.ordered.append(newOrderElement);
+                } else if (select.value == 'preparing') {
+                console.log('Order is being prepared');
+                html.area.preparing.append(newOrderElement);
+                } else if (select.value == 'served') {
+                console.log('Order has been delivered');
+                html.area.served.append(newOrderElement);
+                } 
+                html.edit.overlay.style.display = "none";
+            });
+        }   
+    });
+
+    //served block
+    html.area.served.addEventListener('click', (event) => {
+        event.preventDefault()
+        if (event.target.classList.contains('order')) {
+
+            const orderId = event.target.dataset.id;
+            
+            html.edit.title.value = state.orders[orderId].title;
+            html.edit.table.value = state.orders[orderId].table;
+
+            html.edit.overlay.style.display = "block";
+
+        html.edit.form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+        
+                state.orders[orderId].title = html.edit.title.value;
+                state.orders[orderId].table = html.edit.table.value;
+
+         
+                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+                html.area.served.removeChild(existingOrderElement);
+
+                const newOrderElement = createOrderHtml(state.orders[orderId]);
+                newOrderElement.setAttribute('data-id', orderId);
+
+            
+                const newDeleteButton = document.createElement('button');
+                newDeleteButton.innerText = 'Delete';
+                newDeleteButton.setAttribute('data-id', orderId);
+                newDeleteButton.addEventListener('click', (event) => {
+                    const orderDiv = document.querySelector(`[data-id="${event.target.dataset.id}"]`);
+                    orderDiv.remove();
+                });
+                newOrderElement.appendChild(newDeleteButton);
+
+            
+            
+                const select = document.querySelector('[name="column"]')
+                if (select.value == 'ordered') {
+                console.log('Order has been placed');
+                html.area.ordered.append(newOrderElement);
+                } else if (select.value == 'preparing') {
+                console.log('Order is being prepared');
+                html.area.preparing.append(newOrderElement);
+                } else if (select.value == 'served') {
+                console.log('Order has been delivered');
+                html.area.served.append(newOrderElement);
+                } 
+                html.edit.overlay.style.display = "none";
+            });
+        }   
+    });
+
+    
 };
 
   
@@ -154,11 +281,11 @@ const handleEditCancel = (event) => {
 
 
 
-   const handleDelete = (event) => {
+//    const handleDelete = (event) => {
    
-   html.edit.overlay.style.display = "none";
+//    html.edit.overlay.style.display = "none";
 
-}
+// }
 
 html.add.cancel.addEventListener('click', handleAddCancel) //used
 html.other.add.addEventListener('click', handleAddToggle) //used
@@ -167,7 +294,7 @@ html.add.form.addEventListener('submit', handleAddSubmit)  // used
 html.other.grid.addEventListener('click', handleEditToggle) 
 html.edit.cancel.addEventListener('click', handleEditCancel) //used
 // html.edit.form.addEventListener('submit', handleEditSubmit) //used
-html.edit.delete.addEventListener('click', handleDelete) //barely used
+//html.edit.delete.addEventListener('click', handleDelete) //barely used
 
 html.help.cancel.addEventListener('click', handleHelpCancel) //used
 html.other.help.addEventListener('click', handleHelpToggle) // used
