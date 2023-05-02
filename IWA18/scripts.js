@@ -119,7 +119,9 @@ function handleOrderClick (orderId, column){
 
     const newOrderElement = createOrderHtml(state.orders[orderId]);
     newOrderElement.setAttribute("data-id", orderId);
+    
     const select = document.querySelector('[name="column"]')
+
     if (select.value === "ordered") {
       console.log("Order has been placed");
       document.querySelector('[data-column="ordered"]').append(newOrderElement);

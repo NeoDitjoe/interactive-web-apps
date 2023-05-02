@@ -74,9 +74,6 @@ const handleAddSubmit = (event) => {
     state.orders[id] = order;
 
     const orderElement = createOrderHtml(order);
-    // const columnOrdered = document.querySelector('[data-column="ordered"]')
-    // const columnPreparing = document.querySelector('[data-column="preparing"]')
-    // const columnServed = document.querySelector('[data-column="served"]')
     html.area.ordered.append(orderElement);   
 
     html.add.form.reset();
