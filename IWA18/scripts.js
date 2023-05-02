@@ -31,11 +31,25 @@ const handleDragOver = (event) => {
     updateDragging({ over: column })
     updateDraggingHtml({ over: column })
 }
+let drag;
+const handleDragStart = (event) => {
+  drag = event.target;
+};
+const handleDragDrop = (event) => {
+  event.target.append(drag);
+};
+const handleDragEnd = (event) => {
+  const background = event.target.closest('[data-area]');
+  background.style.background = "white";
+};
+for (const htmlArea of Object.values(html.area)) {
+  htmlArea.addEventListener("dragover", handleDragOver);
+  htmlArea.addEventListener("dragstart", handleDragStart);
+  htmlArea.addEventListener("drop", handleDragDrop);
+  htmlArea.addEventListener("dragend", handleDragEnd);
+}
 
 
-// actions for when button is clicked
-const handleDragStart = (event) => {}
-const handleDragEnd = (event) => {}
 const handleHelpToggle = (event)  => {
     html.help.overlay.style.display = "block"
 }
@@ -45,11 +59,10 @@ function handleHelpCancel(){
     html.other.add.focus()    
 }
 
-const handleAddToggle = () => {
-    
+const handleAddToggle = () => {  
     html.add.overlay.style.display = 'block'
-    
 }
+
 
 const handleAddCancel = () => {
     html.add.overlay.style.display = 'none'
@@ -57,191 +70,96 @@ const handleAddCancel = () => {
 }
 
 
+
 const handleAddSubmit = (event) => {
+  event.preventDefault();
+  const title = html.add.title.value;
+  const table = html.add.table.value;
+
+  const id = createOrderData(createOrderHtml).id
+  const created = new Date();
+  const order = {id, title, table, created };
+  state.orders[id] = order;
+
+  const orderElement = createOrderHtml(order);
+  document.querySelector('[data-column="ordered"]').append(orderElement);   
+
+  html.add.form.reset();
+  html.add.overlay.style.display = 'none';
+  html.other.add.focus() 
+  console.log(state.orders)
+}
+
+
+
+function handleOrderClick (orderId, column){
+  html.edit.title.value = state.orders[orderId].title;
+  html.edit.table.value = state.orders[orderId].table;
+  html.edit.overlay.style.display = "block";
+
+
+  html.edit.delete.addEventListener("click", (event) => {
     event.preventDefault();
-    const title = html.add.title.value;
-    const table = html.add.table.value;
 
-    const id = Object.keys(state.orders).length + 1;
-    const created = new Date();
-    const order = {id, title, table, created };
-    state.orders[id] = order;
+    const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+    existingOrderElement.remove();
 
-    const orderElement = createOrderHtml(order);
-    const columnOrdered = document.querySelector('[data-column="ordered"]')
-    columnOrdered.append(orderElement);   
-
-    html.add.form.reset();
-    html.add.overlay.style.display = 'none';
-    html.other.add.focus() 
-
- 
-    columnOrdered.addEventListener('click', (event) => {
-        event.preventDefault()
-        if (event.target.classList.contains('order')) {
-
-            const orderId = event.target.dataset.id;
-            
-            html.edit.title.value = state.orders[orderId].title;
-            html.edit.table.value = state.orders[orderId].table;
-
-            html.edit.overlay.style.display = "block";
+    html.edit.overlay.style.display = "none";
+  });
 
 
+  html.edit.form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-        html.edit.delete.addEventListener('click', (event) => {
+    state.orders[orderId].title = html.edit.title.value;
+    state.orders[orderId].table = html.edit.table.value;
 
-                event.preventDefault()
-                
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnOrdered.removeChild(existingOrderElement);
-                
-                html.edit.overlay.style.display = "none";
-                
-            })
+    const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
+    existingOrderElement.remove();
 
+    const newOrderElement = createOrderHtml(state.orders[orderId]);
+    newOrderElement.setAttribute("data-id", orderId);
+    const select = document.querySelector('[name="column"]')
+    if (select.value === "ordered") {
+      console.log("Order has been placed");
+      document.querySelector('[data-column="ordered"]').append(newOrderElement);
+    } else if (select.value === "preparing") {
+      console.log("Order is being prepared");
+      document.querySelector('[data-column="preparing"]').append(newOrderElement);
+    } else if (select.value === "served") {
+      console.log("Order has been delivered");
+      document.querySelector('[data-column="served"]').append(newOrderElement);
+    }
+    html.edit.overlay.style.display = "none";
+  });
 
-        html.edit.form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-        
-                state.orders[orderId].title = html.edit.title.value;
-                state.orders[orderId].table = html.edit.table.value;
-
-         
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnOrdered.removeChild(existingOrderElement);
-
-                
-                const newOrderElement = createOrderHtml(state.orders[orderId]);
-                newOrderElement.setAttribute('data-id', orderId);
-          
-            
-                const select = document.querySelector('[name="column"]')
-                if (select.value == 'ordered') {
-                console.log('Order has been placed');
-                columnOrdered.append(newOrderElement);
-                } else if (select.value == 'preparing') {
-                console.log('Order is being prepared');
-                columnPreparing.append(newOrderElement);
-                } else if (select.value == 'served') {
-                console.log('Order has been delivered');
-                columnServed.append(newOrderElement);
-                } 
-                html.edit.overlay.style.display = "none";
-            });
-        }   
-    });
-
-//preparing column
-const columnPreparing = document.querySelector('[data-column="preparing"]')
-    columnPreparing.addEventListener('click', (event) => {
-        event.preventDefault()
-        if (event.target.classList.contains('order')) {
-
-            const orderId = event.target.dataset.id;
-            
-            html.edit.title.value = state.orders[orderId].title;
-            html.edit.table.value = state.orders[orderId].table;
-
-            html.edit.overlay.style.display = "block";
-
-    html.edit.delete.addEventListener('click', (event) => {
-
-                event.preventDefault()
-                
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnPreparing.removeChild(existingOrderElement);
-                html.edit.overlay.style.display = "none";
-                
-            })
-
-    html.edit.form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-        
-                state.orders[orderId].title = html.edit.title.value;
-                state.orders[orderId].table = html.edit.table.value;
-
-         
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnPreparing.removeChild(existingOrderElement);
-
-                const newOrderElement = createOrderHtml(state.orders[orderId]);
-                newOrderElement.setAttribute('data-id', orderId);
-
-            
-                const select = document.querySelector('[name="column"]')
-                if (select.value == 'ordered') {
-                console.log('Order has been placed');
-                columnOrdered.append(newOrderElement);
-                } else if (select.value == 'preparing') {
-                console.log('Order is being prepared');
-                columnPreparing.append(newOrderElement);
-                } else if (select.value == 'served') {
-                console.log('Order has been delivered');
-                columnServed.append(newOrderElement);
-                } 
-                html.edit.overlay.style.display = "none";
-            });
-        }   
-    });
-
-    //served block
-    const columnServed = document.querySelector('[data-column="served"]')
-    columnServed.addEventListener('click', (event) => {
-        event.preventDefault()
-        if (event.target.classList.contains('order')) {
-
-            const orderId = event.target.dataset.id;
-            
-            html.edit.title.value = state.orders[orderId].title;
-            html.edit.table.value = state.orders[orderId].table;
-
-            html.edit.overlay.style.display = "block";
-
-    html.edit.delete.addEventListener('click', (event) => {
-
-                event.preventDefault()
-                
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnServed.removeChild(existingOrderElement);
-                html.edit.overlay.style.display = "none";
-                
-            })
-
-    html.edit.form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-        
-                state.orders[orderId].title = html.edit.title.value;
-                state.orders[orderId].table = html.edit.table.value;
-
-         
-                const existingOrderElement = document.querySelector(`[data-id="${orderId}"]`);
-                columnServed.removeChild(existingOrderElement);
-
-                const newOrderElement = createOrderHtml(state.orders[orderId]);
-                newOrderElement.setAttribute('data-id', orderId);
-
-            
-            
-                const select = document.querySelector('[name="column"]')
-                if (select.value == 'ordered') {
-                console.log('Order has been placed');
-                columnOrdered.append(newOrderElement);
-                } else if (select.value == 'preparing') {
-                console.log('Order is being prepared');
-                columnPreparing.append(newOrderElement);
-                } else if (select.value == 'served') {
-                console.log('Order has been delivered');
-                columnServed.append(newOrderElement);
-                } 
-                html.edit.overlay.style.display = "none";
-            });
-        }   
-    });    
+  
 };
+
+html.area.ordered.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("order")) {
+    const orderId = event.target.dataset.id;
+    handleOrderClick(orderId, "ordered");
+  }
+});
+
+html.area.preparing.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("order")) {
+    const orderId = event.target.dataset.id;
+    handleOrderClick(orderId, "preparing");
+  }
+});
+
+html.area.served.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.classList.contains("order")) {
+    const orderId = event.target.dataset.id;
+    handleOrderClick(orderId, "served");
+  }
+});
+  
 
 
 const handleEditToggle = (event) => {}
@@ -257,6 +175,7 @@ html.add.form.addEventListener('submit', handleAddSubmit)  // used
 
 html.other.grid.addEventListener('click', handleEditToggle) 
 html.edit.cancel.addEventListener('click', handleEditCancel) //used
+
 
 html.help.cancel.addEventListener('click', handleHelpCancel) //used
 html.other.help.addEventListener('click', handleHelpToggle) // used
